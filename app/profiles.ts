@@ -86,11 +86,93 @@ export const CANONICAL_PROFILES: Profile[] = [
     bio: "Estudante de cinema. Apaixonada por livros de ficção científica e um bom filme e por noites longas.",
   },
 ];
+export const FINAL_DAY_PROFILES: Profile[] = [
+ {
+  id: "f1",
+  name: "ANOMALIA",
+  age: 10,
+  photos: [
+    "/anomalies/mulher3.png",
+    "/anomalies/mulher3.png",
+    "/anomalies/mulher3.png",
+  ],
+  bio: "Isso de fato uma anomalia no sistema reporte! | voce entendeu o jogo?"
+},
+  {
+    id: "f2",
+    name: "VOCE",
+    age: 10,
+    photos: [
+      "/anomalies/felipe1.png",
+      "/anomalies/felipe1.png",
+      "/anomalies/felipe1.png"
+    ],
+    bio: "Quem é você? o perfil que voce ignorou? | a anamolia despercebida?"
+  },  
+   {
+    id: "f3",
+    name: "ONLINE",
+    age: 10,
+    photos: [
+      "/anomalies/juliana3.png",
+      "/anomalies/juliana3.png",
+      "/anomalies/juliana3.png"
+    ],
+    bio: "Nós estávamos observando."
+  },  
+    {
+    id: "f4",
+    name: "CONTINUE",
+    age: 10,
+    photos: [
+      "/anomalies/lucas4.png",
+      "/anomalies/lucas4.png",
+      "/anomalies/lucas4.png"
+    ],
+    bio: "Nao olhe para tras"
+  },  
+    {
+    id: "f5",
+    name: "Continue",
+    age: 10,
+    photos: [
+      "/anomalies/lucas4.png",
+      "/anomalies/lucas4.png",
+      "/anomalies/lucas4.png"
+    ],
+    bio: "deslize um pouco mais. !Não existem mais perfis para analisar"
+  },  
+   {
+    id: "f6",
+    name: "Quem E VOCE?",
+    age: 10,
+    photos: [
+      "/anomalies/lucas3.png",
+      "/anomalies/lucas3.png",
+      "/anomalies/lucas3.png"
+    ],
+    bio: "Sou Marina. Sou Felipe. Sou Juliana. Sou Lucas. Sou Camila. Sou Marlon. Sou Beatriz."
+  }, 
+   {
+    id: "f7",
+    name: "Quem E VOCE? Continue...",
+    age: 10,
+    photos: [
+      "/anomalies/lucas3.png",
+      "/anomalies/lucas4.png",
+      "/anomalies/lucas4.png"
+    ],
+    bio: "Você notou alguma anomalia hoje?@<*&%2>"
+  },  
+];
 
 
 export const ANOMALY_NAMES = [
   "Marisa",
 ];
+export const ANOMALY_AGE = [
+  60,
+]
 
 export const ANOMALY_BIOS = [
  "estudante de Biologia, voce e meu Eu te vejo dormindo. Você nunca fecha a janela.",
@@ -109,6 +191,11 @@ export const PROFILE_ANOMALIES: Record<
       "/anomalies/mulher4.png",
       "/anomalies/mulher2.png",
       
+    ],
+  },
+     p2: {
+    2: [
+      "/anomalies/felipe1.png",
     ],
   },
     p3: {
@@ -144,7 +231,7 @@ export const PROFILE_ANOMALIES: Record<
 
 };
 
-export type AnomalyKind = "name" | "photo" | "bio";
+export type AnomalyKind = "name" | "photo" | "bio" |"age";
 
 export type DayProfile = Profile & {
   hasAnomaly: boolean;
@@ -176,6 +263,12 @@ export function generateDay(runSeed: string, day: number): DayProfile[] {
   if (day === 1) {
     return CANONICAL_PROFILES.map((p) => ({ ...p, hasAnomaly: false }));
   }
+  if (day === 10) {
+  return FINAL_DAY_PROFILES.map((p) => ({
+    ...p,
+    hasAnomaly: true,
+  }));
+}
 
   const rand = mulberry32(hashStr(`${runSeed}::day-${day}`));
 
@@ -186,50 +279,77 @@ export function generateDay(runSeed: string, day: number): DayProfile[] {
   if (!dayHasAnomaly) return baseline;
 
  const targetIdx = Math.floor(rand() * CANONICAL_PROFILES.length);
-  const kinds: AnomalyKind[] = ["name", "photo", "bio"];
-  const kind = kinds[Math.floor(rand() * kinds.length)];
-  const p = CANONICAL_PROFILES[targetIdx];
-  const modified: DayProfile = { ...p, hasAnomaly: true, anomalyKind: kind };
-  if (kind === "name") {
-    modified.name = ANOMALY_NAMES[Math.floor(rand() * ANOMALY_NAMES.length)];
-  } else if (kind === "photo") {
-const profileAnomalies = PROFILE_ANOMALIES[p.id];
 
-if (profileAnomalies) {
-  const availableSlots = Object.keys(profileAnomalies).map(
-    (k) => Number(k) as 0 | 1 | 2
-  );
+let kind: AnomalyKind;
+if (day <= 4) {
+  kind = ["name", "age", "bio","photo"][
+    Math.floor(rand() * 3)
+  ] as AnomalyKind;
+} else if (day <= 5) {
+  kind = "bio";
+} else if (day === 6) {
+  kind = ["age", "bio"][
+    Math.floor(rand() * 2)
+  ] as AnomalyKind;
+} else {
+  kind = "photo";
+}
 
-  if (availableSlots.length > 0) {
-    const slot =
-      availableSlots[Math.floor(rand() * availableSlots.length)];
+const p = CANONICAL_PROFILES[targetIdx];
 
-    const anomalyOptions =
-      profileAnomalies[slot];
 
-    if (anomalyOptions?.length) {
-      const chosenAnomaly =
-        anomalyOptions[
-          Math.floor(rand() * anomalyOptions.length)
+const modified: DayProfile = {
+  ...p,
+  hasAnomaly: true,
+  anomalyKind: kind,
+};
+if (kind === "name") {
+  modified.name =
+    ANOMALY_NAMES[Math.floor(rand() * ANOMALY_NAMES.length)];
+
+} else if (kind === "bio") {
+  modified.bio =
+    ANOMALY_BIOS[Math.floor(rand() * ANOMALY_BIOS.length)];
+
+} else if (kind === "age") {
+  modified.age =
+    ANOMALY_AGE[Math.floor(rand() * ANOMALY_AGE.length)];
+
+} else if (kind === "photo") {
+  const profileAnomalies = PROFILE_ANOMALIES[p.id];
+
+  if (profileAnomalies) {
+    const availableSlots = Object.keys(profileAnomalies).map(
+      (k) => Number(k) as 0 | 1 | 2
+    );
+
+    if (availableSlots.length > 0) {
+      const slot =
+        availableSlots[Math.floor(rand() * availableSlots.length)];
+
+      const anomalyOptions = profileAnomalies[slot];
+
+      if (anomalyOptions?.length) {
+        const chosenAnomaly =
+          anomalyOptions[
+            Math.floor(rand() * anomalyOptions.length)
+          ];
+
+        const newPhotos = [...p.photos] as [
+          string,
+          string,
+          string
         ];
 
-      const newPhotos = [...p.photos] as [
-        string,
-        string,
-        string
-      ];
+        newPhotos[slot] = chosenAnomaly;
 
-      newPhotos[slot] = chosenAnomaly;
-
-      modified.photos = newPhotos;
-      modified.anomalyPhotoIndex = slot;
+        modified.photos = newPhotos;
+        modified.anomalyPhotoIndex = slot;
+      }
     }
   }
 }
-  } else {
-    modified.bio = ANOMALY_BIOS[Math.floor(rand() * ANOMALY_BIOS.length)];
-  }
-  baseline[targetIdx] = modified;
-  return baseline;
+baseline[targetIdx] = modified;
+return baseline;
 }
 

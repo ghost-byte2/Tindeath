@@ -12,9 +12,11 @@ type Phase =
   | "swiping"
   | "verdict"
   | "result"
+  | "jumpscare"
   | "won";
 
 const STORAGE_KEY = "tindeath::v1";
+
 
 type Save = { day: number; runSeed: string };
 
@@ -43,7 +45,12 @@ export default function TindeathGame() {
   const [index, setIndex] = useState(0);
   const [swipes, setSwipes] = useState<("match" | "reject")[]>([]);
   const [lastWrong, setLastWrong] = useState<string | null>(null);
+  const [pendingDeath, setPendingDeath] = useState(false);
+  const JUMPSCARES = [
+  "/jumpscare.png",
+  "/jumpscare2.png",
 
+];
 
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
@@ -73,6 +80,40 @@ export default function TindeathGame() {
       setIndex(index + 1);
     }
   }
+ function Jumpscare({
+  onFinish,
+}: {
+  onFinish: () => void;
+}) {
+  const [image] = useState(
+    () =>
+      JUMPSCARES[
+        Math.floor(Math.random() * JUMPSCARES.length)
+      ]
+  );
+
+  useEffect(() => {
+   
+
+    const timer = setTimeout(() => {
+      onFinish();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [onFinish]);
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black animate-pulse">
+      <img
+        src={image}
+        alt="Jumpscare"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  );
+}
 
  function answer(foundAnomaly: boolean) {
   // Dia 1: nunca mata o jogador
@@ -83,25 +124,30 @@ export default function TindeathGame() {
     setPhase("result");
     return;
   }
+  if (save.day === 10) {
+  setPhase("won");
+  return;
+}
 
   const correct = foundAnomaly === anomaliesExist;
 
-  if (!correct) {
-    const next = { day: 1, runSeed: `seed-${Date.now()}` };
-    setSave(next);
-    saveSave(next);
+ if (!correct) {
+  const next = { day: 1, runSeed: `seed-${Date.now()}` };
+  setSave(next);
+  saveSave(next);
 
-    setLastWrong(
-      anomaliesExist
-        ? "Havia anomalia.Você não percebeu.Ela já está em sua casa..."
-        : "Ele te encontrou. Você não percebeu. e tarde demais...",
-    );
+  setLastWrong(
+    anomaliesExist
+      ? "Havia anomalia. Você não percebeu. Ela já está em sua casa..."
+      : "Ele te encontrou. Você não percebeu. É tarde demais..."
+  );
 
-    setPhase("result");
-    return;
-  }
+  setPendingDeath(true);
+  setPhase("jumpscare");
+  return;
+}
 
-  if (save.day >= 9) {
+  if (save.day >= 10) {
     setPhase("won");
     return;
   }
@@ -141,6 +187,13 @@ export default function TindeathGame() {
 />
         )}
         {phase === "verdict" && <Verdict onAnswer={answer} day={save.day} />}
+        {phase === "jumpscare" && (
+  <Jumpscare
+    onFinish={() => {
+      setPhase("result");
+    }}
+  />
+)}
         {phase === "result" && (
           <ResultView
             died={!!lastWrong}
@@ -243,15 +296,67 @@ function Footer() {
 
 function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   useEffect(() => {
-    if (day > 1) {
+    if (day > 1 && day !==10) {
       onStart();
     }
   }, [day, onStart]);
+  function FinalDayIntro({
+  onStart,
+}: {
+  onStart: () => void;
+}) {
+  const [step, setStep] = useState(0);
+
+  const texts = [
+    "Parabens Você sobreviveu.",
+    "Ninguém chegou tão longe.",
+    "Eles estao felizes por voce.",
+    "por voce ter se comportado bem",
+    "eles estao te esperando...",
+    "para receber sua recompensa :)"
+  ];
+
+  useEffect(() => {
+    if (step < texts.length - 1) {
+      const timer = setTimeout(() => {
+        setStep((s) => s + 1);
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [step]);
+
+  return (
+    <Card className="p-8 bg-black text-center border-0">
+      <div className="min-w-[300px] min-h-[250px] flex items-center justify-center">
+        <p
+          key={step}
+          className="text-xl text-white animate-in fade-in duration-1000"
+        >
+          {texts[step]}
+        </p>
+      </div>
+
+      {step === texts.length - 1 && (
+        <Button
+          onClick={onStart}
+          className="w-full bg-red-700 hover:bg-red-800"
+        >
+          Receber recompensa?
+        </Button>
+      )}
+    </Card>
+  );
+}
+ if (day === 10) {
+  return <FinalDayIntro onStart={onStart} />;
+}
 
   return (
     <Card className="p-6 space-y-4 border border-white/10">
       <h1 className="text-3xl font-black leading-tight">
         {day === 1 ? "Bem-vindo ao Tindeath." : `Dia ${day}.`}
+        
       </h1>
 
       {day === 1 && (
@@ -267,8 +372,10 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
           </Button>
         </>
       )}
+    
     </Card>
   );
+  
 }
 
 function SwipeView({
