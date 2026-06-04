@@ -1,0 +1,490 @@
+"use client";
+import { useEffect, useMemo, useState } from "react";
+import { Button } from "./components/ui/button";
+import { Card } from "./components/ui/card";
+import { Heart, X, Skull, Flame } from "lucide-react";
+import { generateDay, type DayProfile } from "./profiles";
+import { Undo2 } from "lucide-react";
+
+type Phase =
+  | "story"
+  | "intro"
+  | "swiping"
+  | "verdict"
+  | "result"
+  | "won";
+
+const STORAGE_KEY = "tindeath::v1";
+
+type Save = { day: number; runSeed: string };
+
+function loadSave(): Save {
+  if (typeof window === "undefined") return { day: 1, runSeed: "seed-1" };
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw) as Save;
+  } catch {}
+  return { day: 1, runSeed: `seed-${Date.now()}` };
+}
+
+function saveSave(s: Save) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+  } catch {}
+}
+
+
+export default function TindeathGame() {
+ const [save, setSave] = useState<Save>({
+  day: 1,
+  runSeed: `seed-${Date.now()}`,
+});
+  const [phase, setPhase] = useState<Phase>("story");
+  const [index, setIndex] = useState(0);
+  const [swipes, setSwipes] = useState<("match" | "reject")[]>([]);
+  const [lastWrong, setLastWrong] = useState<string | null>(null);
+
+
+  const profiles = useMemo<DayProfile[]>(
+    () => generateDay(save.runSeed, save.day),
+    [save.runSeed, save.day],
+  );
+  const anomaliesExist = profiles.some((p) => p.hasAnomaly);
+
+  function startDay() {
+    setIndex(0);
+    setSwipes([]);
+    setLastWrong(null);
+    setPhase("swiping");
+  }
+  function goBack() {
+  if (index > 0) {
+    setIndex(index - 1);
+    setSwipes((prev) => prev.slice(0, -1));
+  }
+}
+
+  function swipe(dir: "match" | "reject") {
+    const next = [...swipes, dir];
+    setSwipes(next);
+    if (index + 1 >= profiles.length) {
+      setPhase("verdict");
+    } else {
+      setIndex(index + 1);
+    }
+  }
+
+ function answer(foundAnomaly: boolean) {
+  // Dia 1: nunca mata o jogador
+  if (save.day === 1) {
+    const next = { ...save, day: 2 };
+    setSave(next);
+    saveSave(next);
+    setPhase("result");
+    return;
+  }
+
+  const correct = foundAnomaly === anomaliesExist;
+
+  if (!correct) {
+    const next = { day: 1, runSeed: `seed-${Date.now()}` };
+    setSave(next);
+    saveSave(next);
+
+    setLastWrong(
+      anomaliesExist
+        ? "Havia anomalia.Você não percebeu.Ela já está em sua casa..."
+        : "Ele te encontrou. Você não percebeu. e tarde demais...",
+    );
+
+    setPhase("result");
+    return;
+  }
+
+  if (save.day >= 9) {
+    setPhase("won");
+    return;
+  }
+
+  const next = { ...save, day: save.day + 1 };
+  setSave(next);
+  saveSave(next);
+  setPhase("result");
+}
+
+  function resetRun() {
+    const next = { day: 1, runSeed: `seed-${Date.now()}` };
+    setSave(next);
+    saveSave(next);
+    setPhase("intro");
+  }
+
+  return (
+    <main className="min-h-screen bg-background text-foreground flex flex-col items-center px-4 py-6">
+       {phase !== "story" && <Header day={save.day} />}
+      <div className="w-full max-w-md flex-1 flex flex-col items-stretch justify-center">
+        {phase === "story" && (
+  <StoryIntro onContinue={() => setPhase("intro")} />
+)}
+
+{phase === "intro" && (
+  <Intro onStart={startDay} day={save.day} />
+)}
+        {phase === "swiping" && (
+          <SwipeView
+  profile={profiles[index]}
+  index={index}
+  total={profiles.length}
+  onSwipe={swipe}
+  onBack={goBack}
+  day={save.day}
+/>
+        )}
+        {phase === "verdict" && <Verdict onAnswer={answer} day={save.day} />}
+        {phase === "result" && (
+          <ResultView
+            died={!!lastWrong}
+            message={lastWrong}
+            nextDay={save.day}
+            onNext={() => setPhase("intro")}
+            onReset={resetRun}
+          />
+        )}
+        {phase === "won" && <WonView onReset={resetRun} />}
+      </div>
+      <Footer />
+    </main>
+  );
+}
+function StoryIntro({
+  onContinue,
+}: {
+  onContinue: () => void;
+}) {
+  const [step, setStep] = useState(0);
+
+  const texts = [
+    "ultimos dias de junho de 2026...",
+    "Há três semanas surgiu um aplicativo de relacionamento chamado Tindeath.",
+    "Ninguém sabe quem o criou.",
+    "Pessoas começaram a desaparecer após usar.",
+    "Os perfis aparecem durante 9 dias e...",
+    "mudam durante a noite.",
+    "Às vezes... nada muda.",
+    "Identifique as anomalias. Recuse o match.",
+    "se sobreviver a 9 dias... Voce vence!",
+    "Mas se você errar...",
+    "Eles encontram você.",
+    " haha! boa sorte :)"
+  ];
+
+ useEffect(() => {
+  if (step < texts.length - 1) {
+    const timer = setTimeout(() => {
+      setStep((s) => s + 1);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }
+
+  const redirectTimer = setTimeout(() => {
+    onContinue();
+  }, 1000);
+
+  return () => clearTimeout(redirectTimer);
+}, [step, onContinue]);
+
+ return (
+  <Card className="p-8 bg-black border-0 text-center min-h-[350px] flex flex-col justify-between">
+    <div className="flex-1 flex items-center justify-center">
+      <p
+        key={step}
+        className="text-lg text-red-100 animate-in fade-in duration-1000"
+      >
+        {texts[step]}
+      </p>
+    </div>
+
+    <div className="flex justify-end">
+      <button
+        onClick={onContinue}
+        className="px-4 py-2 text-sm text-white/40 hover:text-gray-300 transition-colors"
+      >
+        Pular introdução
+      </button>
+    </div>
+  </Card>
+);
+}
+
+function Header({ day }: { day: number }) {
+  return (
+    <header className="w-full max-w-md flex items-center justify-between pb-4">
+      <div className="flex items-center gap-2">
+        <Flame className="size-6 text-primary" />
+        <span className="font-black tracking-tight text-xl">
+          tin<span className="text-primary">death</span>
+        </span>
+      </div>
+      <div className="text-xs uppercase tracking-widest text-muted-foreground">
+        Dia <span className="text-primary font-bold">{day}</span> / 9
+      </div>
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <p className="pt-6 text-[10px] uppercase tracking-widest text-muted-foreground">
+      9 dias. 7 perfis. Uma chance.
+    </p>
+  );
+}
+
+function Intro({ onStart, day }: { onStart: () => void; day: number }) {
+  useEffect(() => {
+    if (day > 1) {
+      onStart();
+    }
+  }, [day, onStart]);
+
+  return (
+    <Card className="p-6 space-y-4 border border-white/10">
+      <h1 className="text-3xl font-black leading-tight">
+        {day === 1 ? "Bem-vindo ao Tindeath." : `Dia ${day}.`}
+      </h1>
+
+      {day === 1 && (
+        <>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Hoje você verá os 7 perfis na forma original. Memorize cada nome,
+            foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
+            anomalias e recuse o match.
+          </p>
+
+          <Button onClick={onStart} className="w-full bg-white text-black hover:bg-gray-200" size="lg">
+            Entrar no app
+          </Button>
+        </>
+      )}
+    </Card>
+  );
+}
+
+function SwipeView({
+  profile,
+  index,
+  total,
+  onSwipe,
+  onBack,
+  day,
+}: {
+  profile: DayProfile;
+  index: number;
+  total: number;
+  onSwipe: (d: "match" | "reject") => void;
+  onBack: () => void;
+  day: number;
+}) {
+  const [photoIdx, setPhotoIdx] = useState(0);
+  // Reset photo when profile changes
+  useEffect(() => {
+    setPhotoIdx(0);
+  }, [day, index]);
+  const photoCount = profile.photos.length;
+  return (
+    <div className="space-y-1">
+      <div className="flex gap-1">
+        {Array.from({ length: total }).map((_, i) => (
+          <div
+            key={i}
+            className={`h-1 flex-1 rounded-full ${
+              i < index
+                ? "bg-primary"
+                : i === index
+                  ? "bg-primary/60"
+                  : "bg-muted"
+            }`}
+          />
+        ))}
+      </div>
+      <div className="flex justify-center">
+      <Card
+        key={`${day}-${index}`}
+        className="overflow-hidden border border-white/30 bg-card animate-in fade-in zoom-in-95 duration-300"
+      >
+        <div className="relative w-full bg-muted">
+          <img className=" h-150"
+          src={profile.photos[photoIdx]}
+            alt=""
+            />
+          {/* Tinder-style photo segments */}
+          <div className="absolute top-2 inset-x-2 flex gap-1">
+            {Array.from({ length: photoCount }).map((_, i) => (
+              <div
+                key={i}
+                className={`h-1 flex-1 rounded-full ${
+                  i === photoIdx ? "bg-white" : "bg-white/30"
+                }`}
+              />
+            ))}
+          </div>
+          {/* Left / right tap zones */}
+          <button
+            type="button"
+            aria-label="Foto anterior"
+            onClick={() =>
+              setPhotoIdx((p) => (p - 1 + photoCount) % photoCount)
+            }
+            className="absolute left-0 top-0 h-full w-1/2 focus:outline-none"
+          />
+          <button
+            type="button"
+            aria-label="Próxima foto"
+            onClick={() => setPhotoIdx((p) => (p + 1) % photoCount)}
+            className="absolute right-0 top-0 h-full w-1/2 focus:outline-none"
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-card via-card/80 to-transparent p-4">
+            <div className="flex items-baseline gap-2">
+              <h2 className="text-2xl font-black">{profile.name}</h2>
+              <span className="text-xl font-light text-muted-foreground">
+                {profile.age}
+              </span>
+            </div>
+          </div>
+        </div>
+        {/* Thumbnail strip */}
+        <div className="p-4">
+          <p className="text-sm leading-relaxed text-foreground/90 h-15">
+            {profile.bio}
+          </p>
+        </div>
+      </Card>
+      </div>
+      <div className="flex items-center justify-center gap-20 pt-2">
+          <button
+    onClick={onBack}
+    disabled={index === 0}
+    className="size-16 rounded-full border-2 border-white bg-yellow-600 flex items-center justify-center"
+  >
+    <Undo2 className="" />
+  </button>
+        <button
+          onClick={() => onSwipe("reject")}
+          aria-label="Recusar"
+          className="size-16 rounded-full border-2 border-destructive bg-card text-destructive flex items-center justify-center hover:bg-destructive hover:text-destructive-foreground transition-colors active:scale-95 bg-red-700"
+        >
+          <X className="size-7" />
+        </button>
+        <button
+          onClick={() => onSwipe("match")}
+          aria-label="Match"
+          className="size-16 rounded-full border-2 border-primary bg-card text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors active:scale-95 bg-green-700"
+        >
+          <Heart className="size-7 fill-current bg-green-700" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Verdict({
+  onAnswer,
+  day,
+}: {
+  onAnswer: (foundAnomaly: boolean) => void;
+  day: number;
+}) {
+  return (
+    <div>
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">
+          Fim do dia {day}
+        </p>
+        <h2 className="text-2xl font-black mt-1">
+          Você notou alguma anomalia hoje?
+        </h2>
+      <br></br>
+      <div className="grid grid-cols-2 gap-3">
+        <Button
+          variant="destructive"
+          size="lg"
+          onClick={() => onAnswer(true)}
+          className="font-bold border border-red-500 hover:bg-red-600"
+        >
+          Sim, havia
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          onClick={() => onAnswer(false)}
+          className="font-bold border border-green-500 hover:bg-green-600"
+        >
+          Tudo normal
+        </Button>
+      </div>
+      </div>
+  );
+}
+
+ function ResultView({
+  died,
+  message,
+  nextDay,
+  onNext,
+  onReset,
+}: {
+  died: boolean;
+  message: string | null;
+  nextDay: number;
+  onNext: () => void;
+  onReset: () => void;
+}) {
+  useEffect(() => {
+    if (!died) {
+      const timer = setTimeout(() => {
+        onNext();
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [died, onNext]);
+
+  if (died) {
+    return (
+  <div>
+        <div className="flex items-center gap-3 bg-red-600">
+          <Skull className="size-8 text-destructive " />
+          <h2 className="text-3xl font-black text-destructive">Você morreu.</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-10 ml-5">
+          {message}
+        </p>
+        <Button onClick={onReset} size="lg" className="w-full">
+          Tentar de novo
+        </Button>
+     </div>
+    );
+  }
+  return (
+    <div>
+      <h2 className=" flex align-center text-center text-2xl font-black text-primary ml-20"> Você acordou...Dia {nextDay}</h2>
+ </div>
+  );
+}
+
+function WonView({ onReset }: { onReset: () => void }) {
+  return (
+    <div>
+      <Flame className="size-10 text-primary" />
+      <h2 className="text-3xl font-black">Você sobreviveu aos 9 dias.</h2>
+      <p className="text-sm text-muted-foreground">
+        Você desinstalou o Tindeath. Pela primeira vez em semanas, dormiu sem
+        sonhar com rostos trocados. Ainda assim, às vezes, o celular vibra
+        sozinho.
+      </p>
+      <Button onClick={onReset} size="lg" className="w-full">
+        Recomeçar
+      </Button>
+   </div>
+  );
+}
