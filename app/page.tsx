@@ -14,6 +14,7 @@ type Phase =
   | "result"
   | "jumpscare"
   | "reward"
+  | "systemError"
   | "won";
 
 const STORAGE_KEY = "tindeath::v1";
@@ -172,18 +173,18 @@ export default function TindeathGame() {
   onContinue: () => void;
 }) {
   const [step, setStep] = useState(0);
+  const [step2,setStep2] = useState(0);
 
   const texts = [
      "...",
     "Parabens Você sobreviveu.",
-    "Ninguém chegou tão longe.",
+    "Ninguém chegou tão longe...",
     "Eles estao felizes por voce.",
-    "Voce se comportou muito bem",
-    "eles estao te esperando...",
+    "Voce se comportou tão bem",
+    "agora eles estao te esperando...",
     "",
     "para receber sua recompensa :)"
   ];
-
   useEffect(() => {
     if (step < texts.length - 1) {
       const timer = setTimeout(() => {
@@ -193,16 +194,15 @@ export default function TindeathGame() {
       return () => clearTimeout(timer);
     }
   }, [step]);
-
   return (
     <Card className="p-8 bg-black border-0 text-center">
       <div className="min-w-[300px] min-h-[250px] flex items-center justify-center">
-        <p
-          key={step}
-          className="text-lg text-red-100 animate-in fade-in duration-1000"
-        >
-          {texts[step]}
-        </p>
+<p
+  key={`text-${step}`}
+  className="text-lg text-red-100 animate-in fade-in duration-1000"
+>
+  {texts[step]}
+</p>
       </div>
 
       {step === texts.length - 1 && (
@@ -223,6 +223,21 @@ export default function TindeathGame() {
       <div className="w-full max-w-md flex-1 flex flex-col items-stretch justify-center">
         {phase === "story" && (
   <StoryIntro onContinue={() => setPhase("intro")} />
+)}
+{phase === "systemError" && (
+  <SystemError
+    onFinish={() => {
+      const next = {
+        ...save,
+        day: 10,
+      };
+
+      setSave(next);
+      saveSave(next);
+
+      setPhase("intro");
+    }}
+  />
 )}
 
 {phase === "intro" && (
@@ -249,7 +264,7 @@ export default function TindeathGame() {
       setSave(next);
       saveSave(next);
 
-      setPhase("intro");
+      setPhase("systemError");
     }}
   />
 )}
@@ -335,6 +350,77 @@ function StoryIntro({
     </div>
   </Card>
 );
+}
+function SystemError({ onFinish }: { onFinish: () => void }) {
+  const [step, setStep] = useState(0);
+  const [showErrorScreen, setShowErrorScreen] = useState(false);
+
+  const texts = [
+    "Inicializando sistema...",
+    "Verificando integridade dos perfis...",
+    "Nenhuma anomalia encontrada.",
+    "ERRO DE IDENTIFICAÇÃO.",
+    "USUÁRIO NÃO RECONHECIDO.",
+    "REANALISANDO...",
+  ];
+
+  // Passa pelos textos
+  useEffect(() => {
+    if (step < texts.length - 1) {
+      const timer = setTimeout(() => {
+        setStep((s) => s + 1);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+
+    // Terminou os textos
+    const timer = setTimeout(() => {
+      setShowErrorScreen(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [step]);
+
+  // Tela de erro final
+  useEffect(() => {
+    if (!showErrorScreen) return;
+
+    const timer = setTimeout(() => {
+      onFinish();
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [showErrorScreen, onFinish]);
+
+  if (!showErrorScreen) {
+    return (
+      <div className="fixed inset-0 bg-black flex items-center justify-center">
+        <p
+          key={step}
+          className="text-red-500 text-2xl font-bold animate-in fade-in duration-500"
+        >
+          {texts[step]}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-red-500">
+      <h1 className="text-6xl font-black animate-pulse">
+        SYSTEM ERROR
+      </h1>
+
+      <p className="mt-6 text-xl">
+        Falha ao carregar recompensa...
+      </p>
+
+      <p className="mt-2 text-sm opacity-70">
+        Código: 0x0000A-NOMALY
+      </p>
+    </div>
+  );
 }
 
 function Header({ day }: { day: number }) {
@@ -640,15 +726,20 @@ function WonView({ onReset }: { onReset: () => void }) {
   const [step, setStep] = useState(0);
 
   const texts = [
-    "Você conseguiu.",
-    "Nove dias procurando anomalias.",
-    "As notificações finalmente pararam.",
-    "Os perfis nunca mais apareceram.",
-    "Mas algumas perguntas continuam sem resposta.",
-    "Talvez seja melhor não descobrir.",
-    "isso e um Adeus?",
-    "..."
-  ];
+  "",
+  "Reiniciando sistema...",
+  "Restabelecendo conexão...",
+  "System success: Anomalias removidas.Perfis corrompidos apagados.",
+  "voce conseguiu.",
+  "As notificações finalmente pararam.",
+  "Mas algumas perguntas continuam sem resposta.",
+  "Talvez seja melhor não descobrir.",
+  "Você sobreviveu.",
+  "Isso deveria ser suficiente.",
+  "...",
+  "Adeus.",
+  ""
+];
 
   useEffect(() => {
     if (step < texts.length - 1) {

@@ -96,60 +96,60 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
   ],
-  bio: "Isso e uma anomalia em nosso sistema reporte! | voce entendeu o jogo?"
+  bio: "Isso e uma anomalia em nosso sistema reporte. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
 },
   {
     id: "f2",
-    name: "VOCÊ",
+    name: "NAO OLHE",
     age: 10,
     photos: [
       "/anomalies/felipe1.png",
       "/anomalies/felipe1.png",
       "/anomalies/felipe1.png"
     ],
-    bio: "Qual a resposta O perfil ignororado? | a anamolia despercebida?"
+    bio: "Carregando informações do usuário... ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA."
   },  
    {
     id: "f3",
-    name: "ONLINE",
+    name: "NAO CHORE",
     age: 10,
     photos: [
       "/anomalies/juliana3.png",
       "/anomalies/juliana3.png",
       "/anomalies/juliana3.png"
     ],
-    bio: "Nós estávamos observando pq voce esse tempo todo pq me ignora.<<@&*>posso ser amigo?"
+    bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES >A mensagem nao foi entregue"
   },  
     {
     id: "f4",
     name: "CONTINUE",
     age: 10,
     photos: [
-      "/anomalies/camila1.png",
-      "/anomalies/camila1.png",
-      "/anomalies/camila1.png"
+      "/anomalies/marlon1.png",
+      "/anomalies/marlon1.png",
+      "/anomalies/marlon1.png"
     ],
-    bio: "Nao olhe para tras"
+    bio: "Nao olhe para tras.| ERRO_[ANOMALIA] Você ignorou algo importante."
   },  
     {
     id: "f5",
-    name: "Continue",
+    name: "CONTINUE",
     age: 10,
     photos: [
       "/anomalies/beatriz1.png",
       "/anomalies/beatriz1.png",
       "/anomalies/beatriz1.png"
     ],
-    bio: "deslize um pouco mais. !Não existem mais perfis para analisar"
+    bio: "deslize um pouco mais...| ERRO_FATAL: Não existem mais perfis válidos."
   },  
    {
     id: "f6",
-    name: "Quem sou eu?",
+    name: "Quem sou eu?.|ERRO_USER",
     age: 10,
     photos: [
-      "/anomalies/lucas3.png",
-      "/anomalies/lucas3.png",
-      "/anomalies/lucas3.png"
+      "/anomalies/camila1.png",
+      "/anomalies/camila1.png",
+      "/anomalies/camila1.png"
     ],
     bio: "Sou Marina. Sou Felipe. Sou Juliana. Sou Lucas. Sou Camila. Sou Marlon. Sou Beatriz."
   }, 
@@ -158,11 +158,11 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "Quem sou eu? Continue...",
     age: 10,
     photos: [
+      "/anomalies/lucas2.png",
       "/anomalies/lucas3.png",
-      "/anomalies/lucas4.png",
       "/anomalies/lucas4.png"
     ],
-    bio: "Você notou alguma anomalia hoje?@<*&%2>"
+    bio: "Você notou alguma anomalia hoje?.| ERROR_ANOMALIES: ANOMALIA_CRÍTICA > O usuário começou a fazer parte do sistema..."
   },  
 ];
 
