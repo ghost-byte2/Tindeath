@@ -308,11 +308,13 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   const [step, setStep] = useState(0);
 
   const texts = [
+    "...",
     "Parabens Você sobreviveu.",
     "Ninguém chegou tão longe.",
     "Eles estao felizes por voce.",
-    "por voce ter se comportado bem",
+    "Voce se comportou muito bem",
     "eles estao te esperando...",
+    "",
     "para receber sua recompensa :)"
   ];
 
@@ -580,18 +582,49 @@ function Verdict({
 }
 
 function WonView({ onReset }: { onReset: () => void }) {
+  const [step, setStep] = useState(0);
+
+  const texts = [
+    "Você conseguiu.",
+    "Nove dias procurando anomalias.",
+    "As notificações finalmente pararam.",
+    "Os perfis nunca mais apareceram.",
+    "Mas algumas perguntas continuam sem resposta.",
+    "Talvez seja melhor não descobrir.",
+    "isso e um Adeus?",
+    "..."
+  ];
+
+  useEffect(() => {
+    if (step < texts.length - 1) {
+      const timer = setTimeout(() => {
+        setStep((s) => s + 1);
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [step]);
+
   return (
-    <div>
-      <Flame className="size-10 text-primary" />
-      <h2 className="text-3xl font-black">Você sobreviveu aos 9 dias.</h2>
-      <p className="text-sm text-muted-foreground">
-        Você desinstalou o Tindeath. Pela primeira vez em semanas, dormiu sem
-        sonhar com rostos trocados. Ainda assim, às vezes, o celular vibra
-        sozinho.
-      </p>
-      <Button onClick={onReset} size="lg" className="w-full">
-        Recomeçar
-      </Button>
-   </div>
+    <Card className="p-8 bg-black border-0 text-center">
+      <div className="min-w-[300px] min-h-[250px] flex items-center justify-center">
+        <p
+          key={step}
+          className="text-lg text-red-100 animate-in fade-in duration-1000"
+        >
+          {texts[step]}
+        </p>
+      </div>
+
+      {step === texts.length - 1 && (
+        <Button
+          onClick={onReset}
+          size="lg"
+          className="w-full"
+        >
+          Recomeçar
+        </Button>
+      )}
+    </Card>
   );
 }

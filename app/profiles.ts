@@ -96,18 +96,18 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
   ],
-  bio: "Isso de fato uma anomalia no sistema reporte! | voce entendeu o jogo?"
+  bio: "Isso e uma anomalia em nosso sistema reporte! | voce entendeu o jogo?"
 },
   {
     id: "f2",
-    name: "VOCE",
+    name: "VOCÊ",
     age: 10,
     photos: [
       "/anomalies/felipe1.png",
       "/anomalies/felipe1.png",
       "/anomalies/felipe1.png"
     ],
-    bio: "Quem é você? o perfil que voce ignorou? | a anamolia despercebida?"
+    bio: "Qual a resposta O perfil ignororado? | a anamolia despercebida?"
   },  
    {
     id: "f3",
@@ -118,16 +118,16 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/juliana3.png",
       "/anomalies/juliana3.png"
     ],
-    bio: "Nós estávamos observando."
+    bio: "Nós estávamos observando pq voce esse tempo todo pq me ignora.<<@&*>posso ser amigo?"
   },  
     {
     id: "f4",
     name: "CONTINUE",
     age: 10,
     photos: [
-      "/anomalies/lucas4.png",
-      "/anomalies/lucas4.png",
-      "/anomalies/lucas4.png"
+      "/anomalies/camila1.png",
+      "/anomalies/camila1.png",
+      "/anomalies/camila1.png"
     ],
     bio: "Nao olhe para tras"
   },  
@@ -136,15 +136,15 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "Continue",
     age: 10,
     photos: [
-      "/anomalies/lucas4.png",
-      "/anomalies/lucas4.png",
-      "/anomalies/lucas4.png"
+      "/anomalies/beatriz1.png",
+      "/anomalies/beatriz1.png",
+      "/anomalies/beatriz1.png"
     ],
     bio: "deslize um pouco mais. !Não existem mais perfis para analisar"
   },  
    {
     id: "f6",
-    name: "Quem E VOCE?",
+    name: "Quem sou eu?",
     age: 10,
     photos: [
       "/anomalies/lucas3.png",
@@ -155,7 +155,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   }, 
    {
     id: "f7",
-    name: "Quem E VOCE? Continue...",
+    name: "Quem sou eu? Continue...",
     age: 10,
     photos: [
       "/anomalies/lucas3.png",
