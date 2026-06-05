@@ -5,6 +5,7 @@ import { Card } from "./components/ui/card";
 import { Heart, X, Skull, Flame } from "lucide-react";
 import { generateDay, type DayProfile } from "./profiles";
 import { Undo2 } from "lucide-react";
+import "./style.css";
 
 type Phase =
   | "story"
@@ -564,10 +565,11 @@ function SwipeView({
         className="overflow-hidden border border-white/30 bg-card animate-in fade-in zoom-in-95 duration-300"
       >
         <div className="relative w-full bg-muted">
-          <img className=" h-150"
-          src={profile.photos[photoIdx]}
-            alt=""
-            />
+           <img
+    className="h-110 sm:h-20 md:h-120 lg:h-150 w-full object-cover"
+    src={profile.photos[photoIdx]}
+    alt=""
+  />
           {/* Tinder-style photo segments */}
           <div className="absolute top-2 inset-x-2 flex gap-1">
             {Array.from({ length: photoCount }).map((_, i) => (
