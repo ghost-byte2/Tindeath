@@ -13,6 +13,7 @@ type Phase =
   | "verdict"
   | "result"
   | "jumpscare"
+  | "reward"
   | "won";
 
 const STORAGE_KEY = "tindeath::v1";
@@ -147,8 +148,8 @@ export default function TindeathGame() {
   return;
 }
 
-  if (save.day >= 10) {
-    setPhase("won");
+  if (save.day == 9) {
+    setPhase("reward");
     return;
   }
 
@@ -164,6 +165,57 @@ export default function TindeathGame() {
     saveSave(next);
     setPhase("intro");
   }
+
+ function RewardIntro({
+  onContinue,
+}: {
+  onContinue: () => void;
+}) {
+  const [step, setStep] = useState(0);
+
+  const texts = [
+     "...",
+    "Parabens Você sobreviveu.",
+    "Ninguém chegou tão longe.",
+    "Eles estao felizes por voce.",
+    "Voce se comportou muito bem",
+    "eles estao te esperando...",
+    "",
+    "para receber sua recompensa :)"
+  ];
+
+  useEffect(() => {
+    if (step < texts.length - 1) {
+      const timer = setTimeout(() => {
+        setStep((s) => s + 1);
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [step]);
+
+  return (
+    <Card className="p-8 bg-black border-0 text-center">
+      <div className="min-w-[300px] min-h-[250px] flex items-center justify-center">
+        <p
+          key={step}
+          className="text-lg text-red-100 animate-in fade-in duration-1000"
+        >
+          {texts[step]}
+        </p>
+      </div>
+
+      {step === texts.length - 1 && (
+        <Button
+          onClick={onContinue}
+          className="w-full bg-red-700 hover:bg-red-800"
+        >
+          Receber recompensa
+        </Button>
+      )}
+    </Card>
+  );
+}
 
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center px-4 py-6">
@@ -186,6 +238,21 @@ export default function TindeathGame() {
   day={save.day}
 />
         )}
+        {phase === "reward" && (
+  <RewardIntro
+    onContinue={() => {
+      const next = {
+        ...save,
+        day: 10,
+      };
+
+      setSave(next);
+      saveSave(next);
+
+      setPhase("intro");
+    }}
+  />
+)}
         {phase === "verdict" && <Verdict onAnswer={answer} day={save.day} />}
         {phase === "jumpscare" && (
   <Jumpscare
@@ -295,11 +362,11 @@ function Footer() {
 }
 
 function Intro({ onStart, day }: { onStart: () => void; day: number }) {
-  useEffect(() => {
-    if (day > 1 && day !==10) {
-      onStart();
-    }
-  }, [day, onStart]);
+ useEffect(() => {
+  if (day > 1 && day !== 10) {
+    onStart();
+  }
+}, [day, onStart]);
   function FinalDayIntro({
   onStart,
 }: {
@@ -308,14 +375,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   const [step, setStep] = useState(0);
 
   const texts = [
-    "...",
-    "Parabens Você sobreviveu.",
-    "Ninguém chegou tão longe.",
-    "Eles estao felizes por voce.",
-    "Voce se comportou muito bem",
-    "eles estao te esperando...",
-    "",
-    "para receber sua recompensa :)"
+    "voce acordou...dia 10",
   ];
 
   useEffect(() => {
@@ -323,30 +383,25 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
       const timer = setTimeout(() => {
         setStep((s) => s + 1);
       }, 2500);
-
+        return () => clearTimeout(timer);
+    } else {
+      const timer = setTimeout(() => {
+        onStart();
+      }, 2500);
       return () => clearTimeout(timer);
     }
-  }, [step]);
+  }, [step, onStart]);
 
   return (
-    <Card className="p-8 bg-black text-center border-0">
+     <Card className="p-8 bg-black text-center border-0">
       <div className="min-w-[300px] min-h-[250px] flex items-center justify-center">
-        <p
+        <h2
           key={step}
-          className="text-xl text-white animate-in fade-in duration-1000"
+          className="flex align-center text-center text-2xl font-black text-primary ml-20 animate-in fade-in duration-1000"
         >
           {texts[step]}
-        </p>
+        </h2>
       </div>
-
-      {step === texts.length - 1 && (
-        <Button
-          onClick={onStart}
-          className="w-full bg-red-700 hover:bg-red-800"
-        >
-          Receber recompensa?
-        </Button>
-      )}
     </Card>
   );
 }

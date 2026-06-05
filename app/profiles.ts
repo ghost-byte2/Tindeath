@@ -283,7 +283,7 @@ export function generateDay(runSeed: string, day: number): DayProfile[] {
 let kind: AnomalyKind;
 if (day <= 4) {
   kind = ["name", "age", "bio","photo"][
-    Math.floor(rand() * 3)
+    Math.floor(rand() * 4)
   ] as AnomalyKind;
 } else if (day <= 5) {
   kind = "bio";
