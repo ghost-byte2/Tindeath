@@ -5,8 +5,6 @@ import { Card } from "./components/ui/card";
 import { Heart, X, Skull, Flame } from "lucide-react";
 import { generateDay, type DayProfile } from "./profiles";
 import { Undo2 } from "lucide-react";
-import "./style.css";
-
 type Phase =
   | "story"
   | "intro"
