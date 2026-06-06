@@ -28,7 +28,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/homem2.png",
         "/profiles/homem3.png",
     ],
-    bio: "Dev.software,ja tomei 6 litros de café, introvertido nao muito sociavel,mas pode me chama ai :p.",
+    bio: "Dev.software, eu ja tomei 6 litros de café, introvertido nao muito sociavel,mas pode me chama ai... 👨‍💻😅.",
   },
   {
     id: "p3",
@@ -83,7 +83,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/beatriz2.png",
         "/profiles/beatriz3.png",
     ],
-    bio: "Estudante de cinema. Apaixonada por livros de ficção científica e um bom filme e por noites longas.",
+    bio: "Estudante de cinema. Apaixonada por livros de ficção científica, um bom filme e por noites longas.",
   },
 ];
 export const FINAL_DAY_PROFILES: Profile[] = [
@@ -96,7 +96,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
   ],
-  bio: "Isso e uma anomalia em nosso sistema reporte. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
+  bio: "GET-OUT Isso e uma anomalia em nosso sistema GET OUT. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
 },
   {
     id: "f2",
@@ -171,14 +171,61 @@ export const ANOMALY_NAMES = [
   "Marisa",
 ];
 export const ANOMALY_AGE = [
-  60,
+  60,22,27,41,32,100
 ]
 
-export const ANOMALY_BIOS = [
- "estudante de Biologia, voce e meu Eu te vejo dormindo. Você nunca fecha a janela.",
-  "Estudante de cinema. Apaixonada por alguém para nunca mais ir embora.", 
-     "Médica veterinária. Tenho 3 gatos e zero paciência para mentiras. Eu já estive aí. Você não percebeu.",
-];
+export const PROFILE_BIO_ANOMALIES: Record<string, string[]> = {
+  p1: [
+    "Estudante de Biologia, amante da natureza e do mundo, sempre em busca de novas aventuras. Principalmente à noite.",
+    "Estudante de Biologia. Sempre em busca de novas aventuras. A próxima começa quando você apagar a luz."
+  ],
+
+  p2: [
+   "Dev.software, eu ja tomei 6 litros de café, introvertido nao muito sociavel, mas pode me chamar ai... 👨‍💻😅 Ultimo acesso: agora.",
+   "Dev.software, eu ja tomei 6 litros de café, introvertido nao muito sociavel, mas pode me chamar ai Você deixou sua câmera ligada... 👨‍💻😅."
+  ],
+
+  p3: [
+    "Professora de ioga. Amo a natureza. Apaixonada em viajar pelo mundo Mas ultimamente tenho ficado no mesmo lugar...",
+    "Professora de ioga. Amo a natureza. Apaixonada em viajar pelo mundo...🌍Olhe para trás quando terminar de ler"
+  ],
+   p4: [
+    "Guitarrista nas horas vagas, artista e musica,Toco em bandas de rock indie.",
+    "Guitarrista nas horas vagas, programador no resto. Toco em bandas de rock indie,Alguém continua cantando quando o palco fica vazio."
+  ],
+   p5: [
+    "Médica veterinária. Tenho 3 gatos e zero paciência para mentiras. Gosto de um bom vinho e de um bom papo sobre filmes de terror.Eles ficaram olhando para a porta a noite toda..",
+  ],
+   p6: [
+    "Tatuador há 10 anos.Gosto de academia e  de correr. Procuro conversa boa prefiro conversar pessoalmente em um lugar qualquer a noite."
+  ],
+   p7: [
+    "Estudante de Matematica. Apaixonada por livros de algoritimos, um bom filme e por noites longas.",
+  ],
+};
+export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
+  p1: [
+    "Marisa"
+  ],
+  p2: [
+    "Lipe"
+  ],
+  p3: [
+    "Juju do pix"
+  ],
+  p4: [
+    "Luck"
+  ],
+  p5: [
+    "Carolina"
+  ],
+  p6: [
+    "MATHEUS"
+  ],
+  p7: [
+    "Bianca"
+  ],
+}
 type PhotoSlot = 0 | 1 | 2;
 
 
@@ -304,12 +351,22 @@ const modified: DayProfile = {
   anomalyKind: kind,
 };
 if (kind === "name") {
-  modified.name =
-    ANOMALY_NAMES[Math.floor(rand() * ANOMALY_NAMES.length)];
+   const nameAnomalies = PROFILE_NAME_ANOMALIES[p.id];
+   if(nameAnomalies?.length){
+    modified.name =
+    nameAnomalies[
+      Math.floor(rand() * nameAnomalies.length)
+    ];
+   }
 
 } else if (kind === "bio") {
-  modified.bio =
-    ANOMALY_BIOS[Math.floor(rand() * ANOMALY_BIOS.length)];
+  const bioAnomalies = PROFILE_BIO_ANOMALIES[p.id];
+  if (bioAnomalies?.length) {
+    modified.bio =
+      bioAnomalies[
+        Math.floor(rand() * bioAnomalies.length)
+      ];
+  }
 
 } else if (kind === "age") {
   modified.age =
