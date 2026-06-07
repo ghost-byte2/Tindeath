@@ -35,9 +35,9 @@ export const CANONICAL_PROFILES: Profile[] = [
     name: "Juliana",
     age: 20,
     photos: [
-        "/profiles/juliana.png",
-        "/profiles/juliana1.png",
-        "/profiles/juliana2.png",
+        "/profiles/meg3.png",
+        "/profiles/meg2.png",
+        "/profiles/meg.png",
     ],
     bio: "Professora de ioga.amo a natureza. Apaixonada em viajar pelo mundo...🌍.",
   },
@@ -109,17 +109,17 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     ],
     bio: "Carregando informações do usuário... ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA."
   },  
-   {
-    id: "f3",
-    name: "NAO CHORE",
-    age: 10,
-    photos: [
-      "/anomalies/juliana3.png",
-      "/anomalies/juliana3.png",
-      "/anomalies/juliana3.png"
-    ],
-    bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES >A mensagem nao foi entregue"
-  },  
+ //  {
+  //  id: "f3",
+  //  name: "NAO CHORE",
+   // age: 10,
+  //  photos: [
+  //    "/anomalies/juliana3.png",
+  //    "/anomalies/juliana3.png",
+  //    "/anomalies/juliana3.png"
+ //   ],
+ //   bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES >A mensagem nao foi entregue"
+ // },  
     {
     id: "f4",
     name: "CONTINUE",
@@ -245,12 +245,12 @@ export const PROFILE_ANOMALIES: Record<
       "/anomalies/felipe1.png",
     ],
   },
-    p3: {
-    0: [
-      "/anomalies/juliana1.png",
-      "/anomalies/juliana2.png",
-    ],
-  },
+   // p3: {
+   // 0: [
+  //    "/anomalies/juliana1.png",
+   //   "/anomalies/juliana2.png",
+   // ],
+  //},
     p4: {
     1: [
       "/anomalies/lucas2.png",
