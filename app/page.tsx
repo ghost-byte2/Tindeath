@@ -466,9 +466,20 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
    const audioRef = useRef<HTMLAudioElement | null>(null);
    function startMusic() {
   if (!audioRef.current) return;
-
   audioRef.current.play().catch(console.error);
 }
+useEffect(() => {
+  const audio = new Audio("/haha2.mp3");
+
+  audio.loop = true;
+  audio.volume = 0.2;
+
+  audioRef.current = audio;
+
+  return () => {
+    audio.pause();
+  };
+}, []);
  useEffect(() => {
   if (day > 1 && day !== 10) {
     onStart();
