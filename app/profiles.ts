@@ -39,7 +39,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/meg2.png",
         "/profiles/meg.png",
     ],
-    bio: "bruxinha🧙‍♀️,estudante de teatro, e stremer na roxinha nas horas vagas...",
+    bio: "surtada as vzs, vc aceita os termos de risco? haha, estudante de teatro, e stremer na roxinha nas horas vagas...",
   },
   {
     id: "p4",
@@ -109,17 +109,17 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     ],
     bio: "Carregando informações do usuário... ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA."
   },  
- //  {
-  //  id: "f3",
-  //  name: "NAO CHORE",
-   // age: 10,
-  //  photos: [
-  //    "/anomalies/juliana3.png",
-  //    "/anomalies/juliana3.png",
-  //    "/anomalies/juliana3.png"
- //   ],
- //   bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES >A mensagem nao foi entregue"
- // },  
+   {
+    id: "f3",
+    name: "NAO CHORE",
+    age: 10,
+   photos: [
+      "/anomalies/meg2.png",
+      "/anomalies/meg2.png",
+      "/anomalies/meg2.png"
+    ],
+    bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES >A mensagem nao foi entregue"
+  },  
     {
     id: "f4",
     name: "CONTINUE",
@@ -186,7 +186,7 @@ export const PROFILE_BIO_ANOMALIES: Record<string, string[]> = {
   ],
 
   p3: [
-   "bruxinha🧙,atriz, e stremer na roxinha nas horas vagas..."
+   "Alguem cuja mente conturbada precisa de uma ancora pra ficar em pe, atriz, e stremer na roxinha nas horas vagas..."
   ],
    p4: [
     "Guitarrista nas horas vagas, artista e musica,Toco em bandas de rock indie.",
