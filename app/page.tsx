@@ -36,6 +36,8 @@ function saveSave(s: Save) {
   } catch {}
 }
 
+
+
 export default function TindeathGame() {
  const [save, setSave] = useState<Save>({
   day: 1,
@@ -56,6 +58,7 @@ function restartAudio() {
     audioRef.current.play();
   }
 }
+
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
     [save.runSeed, save.day],
@@ -68,7 +71,7 @@ useEffect(() => {
   audio.volume = 0.2;
 
   audioRef.current = audio;
-
+  audioRef.current.play();
   return () => {
     audio.pause();
   };
@@ -78,6 +81,7 @@ useEffect(() => {
     setSwipes([]);
     setLastWrong(null);
     setPhase("swiping");
+    restartAudio();
   }
   function goBack() {
   if (index > 0) {
@@ -163,6 +167,7 @@ useEffect(() => {
 }
 
   if (save.day == 9) {
+    restartAudio();
     setPhase("reward");
     return;
   }
@@ -178,6 +183,7 @@ useEffect(() => {
     setSave(next);
     saveSave(next);
     setPhase("intro");
+    restartAudio();
   }
 
  function RewardIntro({
@@ -463,23 +469,6 @@ function Footer() {
 }
 
 function Intro({ onStart, day }: { onStart: () => void; day: number }) {
-   const audioRef = useRef<HTMLAudioElement | null>(null);
-   function startMusic() {
-  if (!audioRef.current) return;
-  audioRef.current.play().catch(console.error);
-}
-useEffect(() => {
-  const audio = new Audio("/haha2.mp3");
-
-  audio.loop = true;
-  audio.volume = 0.2;
-
-  audioRef.current = audio;
-
-  return () => {
-    audio.pause();
-  };
-}, []);
  useEffect(() => {
   if (day > 1 && day !== 10) {
     onStart();
@@ -542,16 +531,9 @@ useEffect(() => {
             anomalias e recuse o match.
           </p>
 
-         <Button
-  onClick={() => {
-    startMusic();
-    onStart();
-  }}
-  className="w-full bg-white text-black hover:bg-gray-200"
-  size="lg"
->
-  Entrar no app
-</Button>
+          <Button onClick={onStart} className="w-full bg-white text-black hover:bg-gray-200" size="lg">
+            Entrar no app
+          </Button>
         </>
       )}
     
