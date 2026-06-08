@@ -37,6 +37,7 @@ function saveSave(s: Save) {
 }
 
 
+
 export default function TindeathGame() {
  const [save, setSave] = useState<Save>({
   day: 1,
@@ -53,41 +54,12 @@ export default function TindeathGame() {
   "/jumpscare2.png",
 
 ];
- useEffect(() => {
-    let audio: HTMLAudioElement | null = null;
-
-    if (phase === "story") {
-      audio = new Audio("/haha2.mp3");
-      audio.loop = true;
-      audio.volume = 0.2;
-    }
-    if(phase==="result"){
-      audio = new Audio("/haha2.mp3");
-      audio.loop = true;
-      audio.volume = 0.2;
-    }
-    if(phase ==="verdict"){
-      audio = new Audio ("/haha2.mp3");
-      audio.loop = true;
-      audio.volume = 0.2;
-    }
-
-    if (phase === "reward") {
-      audio = new Audio("/haha2.mp3");
-      audio.loop = true;
-      audio.volume = 0.2;
-    }
-
-    if (audio) {
-      audio.play().catch(console.error);
-    }
-
-    return () => {
-      audio?.pause();
-      audio && (audio.currentTime = 0);
-    };
-  }, [phase]);
-  
+function restartAudio() {
+  if (audioRef.current) {
+    audioRef.current.currentTime = 0;
+    audioRef.current.play();
+  }
+}
 
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
@@ -101,16 +73,20 @@ useEffect(() => {
   audio.volume = 0.2;
 
   audioRef.current = audio;
+    if (phase === "story" && audioRef.current) {
+    audioRef.current.currentTime = 0;
+    audioRef.current.play();
+  }
   return () => {
     audio.pause();
   };
 }, []);
   function startDay() {
-    audioRef.current?.play();
     setIndex(0);
     setSwipes([]);
     setLastWrong(null);
     setPhase("swiping");
+    restartAudio();
   }
   function goBack() {
   if (index > 0) {
@@ -189,13 +165,14 @@ useEffect(() => {
       ? "Havia anomalia. Você não percebeu. Ela já está em sua casa..."
       : "Ele te encontrou. Você não percebeu. É tarde demais..."
   );
-
+ restartAudio();
   setPendingDeath(true);
   setPhase("jumpscare");
   return;
 }
 
   if (save.day == 9) {
+    restartAudio();
     setPhase("reward");
     return;
   }
@@ -211,6 +188,7 @@ useEffect(() => {
     setSave(next);
     saveSave(next);
     setPhase("intro");
+    restartAudio();
   }
 
  function RewardIntro({
