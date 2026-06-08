@@ -211,7 +211,7 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
     "Lipe"
   ],
   p3: [
-    "Juju do pix"
+    "MegLuuh"
   ],
   p4: [
     "Luck"
