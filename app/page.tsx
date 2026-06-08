@@ -36,8 +36,6 @@ function saveSave(s: Save) {
   } catch {}
 }
 
-
-
 export default function TindeathGame() {
  const [save, setSave] = useState<Save>({
   day: 1,
@@ -58,7 +56,6 @@ function restartAudio() {
     audioRef.current.play();
   }
 }
-
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
     [save.runSeed, save.day],
