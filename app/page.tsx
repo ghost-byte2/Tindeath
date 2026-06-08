@@ -84,7 +84,7 @@ useEffect(() => {
   audioRef.current = audio;
   audioRef.current.play();
   return () => {
-    audio.pause();
+    restartAudio()
   };
 }, []);
   function startDay() {
