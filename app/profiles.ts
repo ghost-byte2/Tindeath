@@ -32,14 +32,14 @@ export const CANONICAL_PROFILES: Profile[] = [
   },
   {
     id: "p3",
-    name: "Juliana",
+    name: "Maria luiza",
     age: 20,
     photos: [
         "/profiles/meg3.png",
         "/profiles/meg2.png",
         "/profiles/meg.png",
     ],
-    bio: "Professora de ioga.amo a natureza. Apaixonada em viajar pelo mundo...🌍.",
+    bio: "bruxinha🧙‍♀️,estudante de teatro, e stremer na roxinha nas horas vagas...",
   },
   {
     id: "p4",
@@ -186,8 +186,7 @@ export const PROFILE_BIO_ANOMALIES: Record<string, string[]> = {
   ],
 
   p3: [
-    "Professora de ioga. Amo a natureza. Apaixonada em viajar pelo mundo Mas ultimamente tenho ficado no mesmo lugar...",
-    "Professora de ioga. Amo a natureza. Apaixonada em viajar pelo mundo...🌍Olhe para trás quando terminar de ler"
+   "bruxinha🧙,atriz, e stremer na roxinha nas horas vagas..."
   ],
    p4: [
     "Guitarrista nas horas vagas, artista e musica,Toco em bandas de rock indie.",
