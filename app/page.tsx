@@ -509,7 +509,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
       <div className="min-w-[300px] min-h-[250px] flex items-center justify-center">
         <h2
           key={step}
-          className="flex align-center text-center text-2xl font-black text-primary ml-20 animate-in fade-in duration-1000"
+          className="flex align-center text-center text-2xl font-black text-primary animate-in fade-in duration-1000"
         >
           {texts[step]}
         </h2>

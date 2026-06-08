@@ -411,4 +411,3 @@ if (kind === "name") {
 baseline[targetIdx] = modified;
 return baseline;
 }
-
