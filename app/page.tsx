@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState,useRef } from "react";
 import { Button } from "./components/ui/button";
 import { Card } from "./components/ui/card";
 import { Heart, X, Skull, Flame } from "lucide-react";
@@ -47,19 +47,66 @@ export default function TindeathGame() {
   const [swipes, setSwipes] = useState<("match" | "reject")[]>([]);
   const [lastWrong, setLastWrong] = useState<string | null>(null);
   const [pendingDeath, setPendingDeath] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const JUMPSCARES = [
   "/jumpscare.png",
   "/jumpscare2.png",
 
 ];
+ useEffect(() => {
+    let audio: HTMLAudioElement | null = null;
+
+    if (phase === "story") {
+      audio = new Audio("/haha2.mp3");
+      audio.loop = true;
+      audio.volume = 0.2;
+    }
+    if(phase==="result"){
+      audio = new Audio("/haha2.mp3");
+      audio.loop = true;
+      audio.volume = 0.2;
+    }
+    if(phase ==="verdict"){
+      audio = new Audio ("/haha2.mp3");
+      audio.loop = true;
+      audio.volume = 0.2;
+    }
+
+    if (phase === "reward") {
+      audio = new Audio("/haha2.mp3");
+      audio.loop = true;
+      audio.volume = 0.2;
+    }
+
+    if (audio) {
+      audio.play().catch(console.error);
+    }
+
+    return () => {
+      audio?.pause();
+      audio && (audio.currentTime = 0);
+    };
+  }, [phase]);
+  
 
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
     [save.runSeed, save.day],
   );
   const anomaliesExist = profiles.some((p) => p.hasAnomaly);
+useEffect(() => {
+  const audio = new Audio("/haha2.mp3");
 
+  audio.loop = true;
+  audio.volume = 0.2;
+
+  audioRef.current = audio;
+  return () => {
+    audio.pause();
+  };
+}, []);
   function startDay() {
+    audioRef.current?.play();
     setIndex(0);
     setSwipes([]);
     setLastWrong(null);
@@ -223,6 +270,7 @@ export default function TindeathGame() {
         {phase === "story" && (
   <StoryIntro onContinue={() => setPhase("intro")} />
 )}
+
 {phase === "systemError" && (
   <SystemError
     onFinish={() => {
@@ -275,6 +323,7 @@ export default function TindeathGame() {
     }}
   />
 )}
+
         {phase === "result" && (
           <ResultView
             died={!!lastWrong}
@@ -316,17 +365,17 @@ function StoryIntro({
   if (step < texts.length - 1) {
     const timer = setTimeout(() => {
       setStep((s) => s + 1);
-    }, 2500);
+    }, 2100);
 
     return () => clearTimeout(timer);
   }
-
   const redirectTimer = setTimeout(() => {
     onContinue();
   }, 1000);
 
   return () => clearTimeout(redirectTimer);
 }, [step, onContinue]);
+
 
  return (
   <Card className="p-8 bg-black border-0 text-center min-h-[350px] flex flex-col justify-between">
