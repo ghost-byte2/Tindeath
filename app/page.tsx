@@ -73,10 +73,7 @@ useEffect(() => {
   audio.volume = 0.2;
 
   audioRef.current = audio;
-    if (phase === "story" && audioRef.current) {
-    audioRef.current.currentTime = 0;
-    audioRef.current.play();
-  }
+  audioRef.current.play();
   return () => {
     audio.pause();
   };
