@@ -50,9 +50,7 @@ export default function TindeathGame() {
   const [pendingDeath, setPendingDeath] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const JUMPSCARES = [
-  "/jumpscare.png",
-  "/jumpscare2.png",
-
+  "/monstro.png",
 ];
 function restartAudio() {
   if (audioRef.current) {
@@ -60,6 +58,17 @@ function restartAudio() {
     audioRef.current.play();
   }
 }
+//function pauseAudio() {
+ // if (audioRef.current) {
+  //  audioRef.current.pause();
+ // }
+//}
+
+//function resumeAudio() {
+ // if (audioRef.current) {
+ //   audioRef.current.play();
+ // }
+//}
 
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
@@ -83,7 +92,6 @@ useEffect(() => {
     setSwipes([]);
     setLastWrong(null);
     setPhase("swiping");
-    restartAudio();
   }
   function goBack() {
   if (index > 0) {
@@ -173,7 +181,6 @@ useEffect(() => {
     setPhase("reward");
     return;
   }
-
   const next = { ...save, day: save.day + 1 };
   setSave(next);
   saveSave(next);

@@ -103,9 +103,9 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "NAO OLHE",
     age: 10,
     photos: [
-      "/anomalies/felipe1.png",
-      "/anomalies/felipe1.png",
-      "/anomalies/felipe1.png"
+      "/anomalies/felipe2.png",
+      "/anomalies/felipe2.png",
+      "/anomalies/felipe2.png",
     ],
     bio: "Carregando informações do usuário... ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA."
   },  
@@ -147,11 +147,11 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "Quem sou eu?.|ERRO_USER",
     age: 10,
     photos: [
-      "/anomalies/camila1.png",
-      "/anomalies/camila1.png",
-      "/anomalies/camila1.png"
+      "/anomalies/camila2.png",
+      "/anomalies/camila2.png",
+      "/anomalies/camila2.png"
     ],
-    bio: "Sou Marina. Sou Felipe. Sou Juliana. Sou Lucas. Sou Camila. Sou Marlon. Sou Beatriz."
+    bio: "Marina. Felipe. Juliana. Lucas.  Camila.  Marlon. Beatriz."
   }, 
    {
     id: "f7",
@@ -235,8 +235,8 @@ export const PROFILE_ANOMALIES: Record<
 > = {
    p1: {
     2: [
-      "/anomalies/mulher4.png",
-      "/anomalies/mulher2.png",
+      "/anomalies/marina.png",
+      "/anomalies/marina2.png",
       
     ],
   },
@@ -245,13 +245,15 @@ export const PROFILE_ANOMALIES: Record<
       "/anomalies/felipe1.png",
     ],
   },
-   // p3: {
-   // 0: [
-  //    "/anomalies/juliana1.png",
-   //   "/anomalies/juliana2.png",
-   // ],
-  //},
+    p3: {
+    2: [
+      "/anomalies/juliana4.png",
+    ],
+  },
     p4: {
+    0:[
+      "anomalies/lucas4.png",
+      ],
     1: [
       "/anomalies/lucas2.png",
     ],
@@ -266,8 +268,8 @@ export const PROFILE_ANOMALIES: Record<
     ],
   },
    p6: {
-    1: [
-       "/anomalies/marlon1.png", 
+    2: [
+       "/anomalies/marlon2.png", 
     ],
   },
    p7: {
