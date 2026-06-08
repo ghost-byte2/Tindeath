@@ -58,17 +58,6 @@ function restartAudio() {
     audioRef.current.play();
   }
 }
-//function pauseAudio() {
- // if (audioRef.current) {
-  //  audioRef.current.pause();
- // }
-//}
-
-//function resumeAudio() {
- // if (audioRef.current) {
- //   audioRef.current.play();
- // }
-//}
 
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
@@ -82,9 +71,9 @@ useEffect(() => {
   audio.volume = 0.2;
 
   audioRef.current = audio;
-  audioRef.current.play();
+
   return () => {
-    restartAudio()
+    audio.pause();
   };
 }, []);
   function startDay() {
@@ -177,10 +166,10 @@ useEffect(() => {
 }
 
   if (save.day == 9) {
-    restartAudio();
     setPhase("reward");
     return;
   }
+
   const next = { ...save, day: save.day + 1 };
   setSave(next);
   saveSave(next);
@@ -192,7 +181,6 @@ useEffect(() => {
     setSave(next);
     saveSave(next);
     setPhase("intro");
-    restartAudio();
   }
 
  function RewardIntro({
@@ -478,13 +466,11 @@ function Footer() {
 }
 
 function Intro({ onStart, day }: { onStart: () => void; day: number }) {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-    function startMusic() {
+   const audioRef = useRef<HTMLAudioElement | null>(null);
+   function startMusic() {
   if (!audioRef.current) return;
 
-  audioRef.current
-    .play()
-    .catch(err => console.log("Erro ao tocar:", err));
+  audioRef.current.play().catch(console.error);
 }
  useEffect(() => {
   if (day > 1 && day !== 10) {
@@ -533,7 +519,6 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   return <FinalDayIntro onStart={onStart} />;
 }
 
-
   return (
     <Card className="p-6 space-y-4 border border-white/10">
       <h1 className="text-3xl font-black leading-tight">
@@ -549,7 +534,13 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
             anomalias e recuse o match.
           </p>
 
-         <Button className="w-full bg-white text-black hover:bg-gray-200" size="lg" onClick={() => { startMusic(); onStart();}}
+         <Button
+  onClick={() => {
+    startMusic();
+    onStart();
+  }}
+  className="w-full bg-white text-black hover:bg-gray-200"
+  size="lg"
 >
   Entrar no app
 </Button>
