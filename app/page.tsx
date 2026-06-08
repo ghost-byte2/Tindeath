@@ -478,6 +478,14 @@ function Footer() {
 }
 
 function Intro({ onStart, day }: { onStart: () => void; day: number }) {
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    function startMusic() {
+  if (!audioRef.current) return;
+
+  audioRef.current
+    .play()
+    .catch(err => console.log("Erro ao tocar:", err));
+}
  useEffect(() => {
   if (day > 1 && day !== 10) {
     onStart();
@@ -525,6 +533,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   return <FinalDayIntro onStart={onStart} />;
 }
 
+
   return (
     <Card className="p-6 space-y-4 border border-white/10">
       <h1 className="text-3xl font-black leading-tight">
@@ -540,9 +549,10 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
             anomalias e recuse o match.
           </p>
 
-          <Button onClick={onStart} className="w-full bg-white text-black hover:bg-gray-200" size="lg">
-            Entrar no app
-          </Button>
+         <Button className="w-full bg-white text-black hover:bg-gray-200" size="lg" onClick={() => { startMusic(); onStart();}}
+>
+  Entrar no app
+</Button>
         </>
       )}
     
