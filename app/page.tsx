@@ -64,6 +64,7 @@ function restartAudio() {
     [save.runSeed, save.day],
   );
   const anomaliesExist = profiles.some((p) => p.hasAnomaly);
+  const startedAudioRef = useRef(false);
 useEffect(() => {
   const audio = new Audio("/haha2.mp3");
 
@@ -76,13 +77,17 @@ useEffect(() => {
     audio.pause();
   };
 }, []);
-  function startDay() {
-    setIndex(0);
-    setSwipes([]);
-    setLastWrong(null);
-    setPhase("swiping");
+ function startDay() {
+  setIndex(0);
+  setSwipes([]);
+  setLastWrong(null);
+  setPhase("swiping");
+
+  if (!startedAudioRef.current) {
     restartAudio();
+    startedAudioRef.current = true;
   }
+}
   function goBack() {
   if (index > 0) {
     setIndex(index - 1);
