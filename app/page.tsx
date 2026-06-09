@@ -365,7 +365,7 @@ function sendMessage() {
   className="w-70 h-70 rounded-full object-cover shadow-2xl"
 />
     </div>
-    <Card className="w-full max-w-sm p-4 mb-4 min-h-[80px] bg-white/95">
+    <Card className=" border-2 border-red-800 w-full max-w-sm p-4 mb-4 min-h-[80px] bg-red-500">
      {sentMessage && (
     <div className="mb-3 text-right">
       <span className="text-xs text-gray-500">Você</span>
@@ -390,13 +390,15 @@ function sendMessage() {
             {matchedAnomaly.name}
           </span>
         </div>
-      ) : (
-     <Input
+      ) : (  
+       
+ <Input
   value={userMessage}
   onChange={(e) => setUserMessage(e.target.value)}
   placeholder="Digite uma mensagem..."
-  className="w-full max-w-sm bg-white border-white text-black"
+  className="w-full !bg-white max-w-sm !border-red-800 placeholder:text-zinc-400 text-black"
 />
+
       )}
     </Card>
 
@@ -404,7 +406,7 @@ function sendMessage() {
       onClick={sendMessage}
       disabled={typing}
       size="lg"
-      className="w-full max-w-sm bg-white text-rose-600 hover:bg-white/90 font-bold"
+      className=" border border-white/40 w-full max-w-sm bg-red-400 text-white hover:bg-white/90 font-bold"
     >
       {typing ? "Digitando..." : "Enviar mensagem"}
     </Button>
@@ -489,6 +491,7 @@ function StoryIntro({
 
 
  return (
+  
   <Card className="p-8 bg-black border-0 text-center min-h-[350px] flex flex-col justify-between">
     <div className="flex-1 flex items-center justify-center">
       <p
@@ -702,20 +705,6 @@ function SwipeView({
   const photoCount = profile.photos.length;
   return (
     <div className="space-y-1">
-      <div className="flex gap-1">
-        {Array.from({ length: total }).map((_, i) => (
-          <div
-            key={i}
-            className={`h-1 flex-1 rounded-full ${
-              i < index
-                ? "bg-primary"
-                : i === index
-                  ? "bg-primary/60"
-                  : "bg-muted"
-            }`}
-          />
-        ))}
-      </div>
       <div className="flex justify-center">
       <Card
         key={`${day}-${index}`}
@@ -781,16 +770,16 @@ function SwipeView({
         <button
           onClick={() => onSwipe("reject")}
           aria-label="Recusar"
-          className="size-16 rounded-full border-2 border-destructive bg-card text-destructive flex items-center justify-center hover:bg-destructive hover:text-destructive-foreground transition-colors active:scale-95 bg-red-700"
+          className="size-16 rounded-full border-2 border-destructive bg-card text-destructive flex items-center justify-center text-white transition-colors active:scale-95 bg-red-700"
         >
           <X className="size-7" />
         </button>
         <button
           onClick={() => onSwipe("match")}
           aria-label="Match"
-          className="size-16 rounded-full border-2 border-primary bg-card text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors active:scale-95 bg-green-700"
+          className="size-16 rounded-full border-2  flex items-center justify-center transition-colors active:scale-95 bg-green-700"
         >
-          <Heart className="size-7 fill-current bg-green-700" />
+          <Heart className="bg-green-700 text-white" />
         </button>
       </div>
     </div>
@@ -815,18 +804,17 @@ function Verdict({
       <br></br>
       <div className="grid grid-cols-2 gap-3">
         <Button
-          variant="destructive"
+         
           size="lg"
           onClick={() => onAnswer(true)}
-          className="font-bold border border-red-500 hover:bg-red-600"
+          className=" bg-black font-bold border border-red-700 hover:bg-red-700"
         >
           Sim, havia
         </Button>
         <Button
-          variant="secondary"
           size="lg"
           onClick={() => onAnswer(false)}
-          className="font-bold border border-green-500 hover:bg-green-600"
+          className=" bg-black font-bold border border-green-700 hover:bg-green-700"
         >
           Tudo normal
         </Button>
@@ -862,13 +850,13 @@ function Verdict({
     return (
   <div>
         <div className="flex items-center gap-3 bg-red-600">
-          <Skull className="size-8 text-destructive " />
-          <h2 className="text-3xl font-black text-destructive">Você morreu.</h2>
+          <Skull className="size-8  " />
+          <h2 className="text-3xl font-black ">Você morreu.</h2>
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed mt-10 ml-5">
           {message}
         </p>
-        <Button onClick={onReset} size="lg" className="w-full">
+        <Button onClick={onReset} size="lg" className="w-full bg-black  hover:bg-black">
           Tentar de novo
         </Button>
      </div>
