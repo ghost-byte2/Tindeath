@@ -39,7 +39,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/meg2.png",
         "/profiles/meg.png",
     ],
-    bio: "surtada as vzs, vc aceita os termos de risco? haha, estudante de teatro, e stremer na roxinha nas horas vagas...",
+    bio: "Uma pessoa que tem amor propio e sou feliz do jeito que sou, estudante de teatro, e stremer na roxinha nas horas vagas...",
   },
   {
     id: "p4",
