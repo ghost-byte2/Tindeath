@@ -5,11 +5,15 @@ import { Card } from "./components/ui/card";
 import { Heart, X, Skull, Flame } from "lucide-react";
 import { generateDay, type DayProfile } from "./profiles";
 import { Undo2 } from "lucide-react";
+import { FINAL_DAY_PROFILES } from "./profiles";
+import { Input } from "./components/ui/input";
+
 type Phase =
   | "story"
   | "intro"
   | "swiping"
   | "verdict"
+  | "match" 
   | "result"
   | "jumpscare"
   | "reward"
@@ -17,10 +21,7 @@ type Phase =
   | "won";
 
 const STORAGE_KEY = "tindeath::v1";
-
-
 type Save = { day: number; runSeed: string };
-
 function loadSave(): Save {
   if (typeof window === "undefined") return { day: 1, runSeed: "seed-1" };
   try {
@@ -36,8 +37,6 @@ function saveSave(s: Save) {
   } catch {}
 }
 
-
-
 export default function TindeathGame() {
  const [save, setSave] = useState<Save>({
   day: 1,
@@ -52,6 +51,14 @@ export default function TindeathGame() {
   const JUMPSCARES = [
   "/monstro.png",
 ];
+
+const [matchedAnomaly, setMatchedAnomaly] = useState<DayProfile | null>(null);
+const profileIndex = Number(
+  matchedAnomaly?.id.replace(/[pf]/g, "") ?? 1
+) - 1;
+const finalProfile = FINAL_DAY_PROFILES[profileIndex];
+const [anomalyMessage, setAnomalyMessage] = useState("");
+const [typing, setTyping] = useState(false);
 function restartAudio() {
   if (audioRef.current) {
     audioRef.current.currentTime = 0;
@@ -67,10 +74,8 @@ function restartAudio() {
   const startedAudioRef = useRef(false);
 useEffect(() => {
   const audio = new Audio("/haha2.mp3");
-
   audio.loop = true;
   audio.volume = 0.2;
-
   audioRef.current = audio;
   audioRef.current.play();
   return () => {
@@ -94,16 +99,85 @@ useEffect(() => {
     setSwipes((prev) => prev.slice(0, -1));
   }
 }
-
-  function swipe(dir: "match" | "reject") {
-    const next = [...swipes, dir];
-    setSwipes(next);
-    if (index + 1 >= profiles.length) {
-      setPhase("verdict");
-    } else {
-      setIndex(index + 1);
-    }
+const [userMessage, setUserMessage] = useState("");
+const [sentMessage, setSentMessage] = useState("");
+ function swipe(dir: "match" | "reject") {
+  const next = [...swipes, dir];
+  setSwipes(next);
+  const current = profiles[index];
+  if (
+    dir === "match" &&
+    current?.hasAnomaly &&
+    save.day !== 1 &&
+    save.day !== 10
+  ) {
+    setMatchedAnomaly(current);
+    setAnomalyMessage("");
+    setTyping(false);
+    setPhase("match");
+    return;
   }
+  if (index + 1 >= profiles.length) {
+    setPhase("verdict");
+  } else {
+    setIndex(index + 1);
+  }
+}
+const creepyMessages = [
+  "oi... eu já tô na sua porta 🙂",
+  "obrigada pelo match. não se vire.",
+  "vc mora no número {n}, certo? to subindo.",
+  "te vi pela janela agora. continua deslizando.",
+  "vc não devia ter dado match comigo...",
+];
+function sendMessage() {
+  if (!matchedAnomaly) return;
+  if (!userMessage.trim()) return;
+
+  setSentMessage(userMessage);
+  setUserMessage("");
+
+  setTimeout(() => {
+    setTyping(true);
+
+    const msg =
+      creepyMessages[
+        Math.floor(Math.random() * creepyMessages.length)
+      ].replace(
+        "{n}",
+        String(Math.floor(Math.random() * 999))
+      );
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+      i++;
+      setAnomalyMessage(msg.slice(0, i));
+
+      if (i >= msg.length) {
+        clearInterval(interval);
+
+        setTimeout(() => {
+          const reset = {
+            day: 1,
+            runSeed: `seed-${Date.now()}`
+          };
+
+          setSave(reset);
+          saveSave(reset);
+
+          setLastWrong(
+            `Você deu match com ${matchedAnomaly.name}. Era uma anomalia.`
+          );
+
+          restartAudio();
+          setPendingDeath(true);
+          setPhase("jumpscare");
+        }, 1800);
+      }
+    }, 60);
+  }, 1000);
+}
  function Jumpscare({
   onFinish,
 }: {
@@ -115,14 +189,11 @@ useEffect(() => {
         Math.floor(Math.random() * JUMPSCARES.length)
       ]
   );
-
   useEffect(() => {
    
-
     const timer = setTimeout(() => {
       onFinish();
     }, 200);
-
     return () => {
       clearTimeout(timer);
     };
@@ -152,7 +223,6 @@ useEffect(() => {
   setPhase("won");
   return;
 }
-
   const correct = foundAnomaly === anomaliesExist;
 
  if (!correct) {
@@ -170,19 +240,16 @@ useEffect(() => {
   setPhase("jumpscare");
   return;
 }
-
   if (save.day == 9) {
     restartAudio();
     setPhase("reward");
     return;
   }
-
   const next = { ...save, day: save.day + 1 };
   setSave(next);
   saveSave(next);
   setPhase("result");
 }
-
   function resetRun() {
     const next = { day: 1, runSeed: `seed-${Date.now()}` };
     setSave(next);
@@ -240,7 +307,6 @@ useEffect(() => {
     </Card>
   );
 }
-
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center px-4 py-6">
        {phase !== "story" && <Header day={save.day} />}
@@ -264,7 +330,6 @@ useEffect(() => {
     }}
   />
 )}
-
 {phase === "intro" && (
   <Intro onStart={startDay} day={save.day} />
 )}
@@ -278,6 +343,75 @@ useEffect(() => {
   day={save.day}
 />
         )}
+    {phase === "match" && matchedAnomaly && (() => {
+  const profileIndex = Number(
+    matchedAnomaly.id.replace(/[pf]/g, "")
+  ) - 1;
+  const finalProfile = FINAL_DAY_PROFILES[profileIndex];
+  return (
+   <div className="  fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-rose-500 via-red-500 to-red-800 p-6 animate-in fade-in duration-500">
+    <h1 className="text-5xl font-bold mb-2 tracking-wider drop-shadow-lg">
+      It's a Match!
+    </h1>
+    <Heart></Heart>
+    <p className="text-white/90 mb-8 text-center">
+      Você e {matchedAnomaly.name} curtiram um ao outro
+    </p>
+
+    <div className="flex items-center gap-4 mb-8">
+  <img
+  src={finalProfile?.photos[0] ?? matchedAnomaly.photos[1]}
+  alt={matchedAnomaly.name}
+  className="w-70 h-70 rounded-full object-cover shadow-2xl"
+/>
+    </div>
+    <Card className="w-full max-w-sm p-4 mb-4 min-h-[80px] bg-white/95">
+     {sentMessage && (
+    <div className="mb-3 text-right">
+      <span className="text-xs text-gray-500">Você</span>
+      <p className="text-black">{sentMessage}</p>
+    </div>
+  )}
+
+  {anomalyMessage && (
+    <div>
+      <span className="text-xs text-gray-500">
+        {matchedAnomaly.name}
+      </span>
+      <p className="text-black">
+        {anomalyMessage}
+        <span className="animate-pulse">|</span>
+      </p>
+    </div>
+  )}
+      {anomalyMessage ? (
+        <div className="flex flex-col gap-1">
+          <span className="text-xs text-black text-muted-foreground">
+            {matchedAnomaly.name}
+          </span>
+        </div>
+      ) : (
+     <Input
+  value={userMessage}
+  onChange={(e) => setUserMessage(e.target.value)}
+  placeholder="Digite uma mensagem..."
+  className="w-full max-w-sm bg-white border-white text-black"
+/>
+      )}
+    </Card>
+
+    <Button
+      onClick={sendMessage}
+      disabled={typing}
+      size="lg"
+      className="w-full max-w-sm bg-white text-rose-600 hover:bg-white/90 font-bold"
+    >
+      {typing ? "Digitando..." : "Enviar mensagem"}
+    </Button>
+  </div>
+
+  );
+})()}
         {phase === "reward" && (
   <RewardIntro
     onContinue={() => {
@@ -301,7 +435,6 @@ useEffect(() => {
     }}
   />
 )}
-
         {phase === "result" && (
           <ResultView
             died={!!lastWrong}
@@ -546,7 +679,6 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   );
   
 }
-
 function SwipeView({
   profile,
   index,

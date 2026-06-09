@@ -125,9 +125,9 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "CONTINUE",
     age: 10,
     photos: [
-      "/anomalies/marlon1.png",
-      "/anomalies/marlon1.png",
-      "/anomalies/marlon1.png"
+      "/anomalies/lucas4.png",
+      "/anomalies/lucas4.png",
+      "/anomalies/lucas4.png"
     ],
     bio: "Nao olhe para tras.| ERRO_[ANOMALIA] Você ignorou algo importante."
   },  
@@ -136,9 +136,9 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "CONTINUE",
     age: 10,
     photos: [
-      "/anomalies/beatriz1.png",
-      "/anomalies/beatriz1.png",
-      "/anomalies/beatriz1.png"
+      "/anomalies/camila2.png",
+      "/anomalies/camila2.png",
+      "/anomalies/camila2.png"
     ],
     bio: "deslize um pouco mais...| ERRO_FATAL: Não existem mais perfis válidos."
   },  
@@ -147,9 +147,9 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "ANOMALIA-087|ERRO_USER",
     age: 10,
     photos: [
-      "/anomalies/camila2.png",
-      "/anomalies/camila2.png",
-      "/anomalies/camila2.png"
+      "/anomalies/marlon1.png",
+      "/anomalies/marlon1.png",
+      "/anomalies/marlon1.png"
     ],
     bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica veterinária.Entidades associadas: 3 felinos domésticos.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos. Ela sabe quando você está mentindo."
   }, 
@@ -158,9 +158,9 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "Quem sou eu? Continue...",
     age: 10,
     photos: [
-      "/anomalies/lucas2.png",
-      "/anomalies/lucas3.png",
-      "/anomalies/lucas4.png"
+      "/anomalies/beatriz1.png",
+      "/anomalies/beatriz1.png",
+      "/anomalies/beatriz1.png"
     ],
     bio: "Você notou alguma anomalia hoje?.| ERROR_ANOMALIES: ANOMALIA_CRÍTICA > O usuário começou a fazer parte do sistema..."
   },  
