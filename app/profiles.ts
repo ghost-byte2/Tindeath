@@ -144,14 +144,14 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   },  
    {
     id: "f6",
-    name: "Quem sou eu?.|ERRO_USER",
+    name: "ANOMALIA-087|ERRO_USER",
     age: 10,
     photos: [
       "/anomalies/camila2.png",
       "/anomalies/camila2.png",
       "/anomalies/camila2.png"
     ],
-    bio: "Marina. Felipe. Juliana. Lucas.  Camila.  Marlon. Beatriz."
+    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica veterinária.Entidades associadas: 3 felinos domésticos.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos. Ela sabe quando você está mentindo."
   }, 
    {
     id: "f7",
