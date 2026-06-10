@@ -779,7 +779,7 @@ function SwipeView({
           <button
     onClick={onBack}
     disabled={index === 0}
-    className="size-16 rounded-full border-2 border-white bg-yellow-600 flex items-center justify-center"
+    className="size-16 rounded-full border-2 border-yellow-500 bg-yellow-600 flex items-center justify-center"
   >
     <Undo2 className="" />
   </button>
@@ -793,7 +793,7 @@ function SwipeView({
         <button
           onClick={() => onSwipe("match")}
           aria-label="Match"
-          className="size-16 rounded-full border-2  flex items-center justify-center transition-colors active:scale-95 bg-green-700"
+          className="size-16 rounded-full border-2 border-green-600 flex items-center justify-center transition-colors active:scale-95 bg-green-700"
         >
           <Heart className="bg-green-700 text-white" />
         </button>
