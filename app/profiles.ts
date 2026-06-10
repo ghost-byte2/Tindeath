@@ -233,10 +233,11 @@ export const PROFILE_ANOMALIES: Record<
   Partial<Record<PhotoSlot, string[]>>
 > = {
    p1: {
+    0: [
+      "/anomalies/marina2.png",  
+    ],
     2: [
-      "/anomalies/marina.png",
-      "/anomalies/marina2.png",
-      
+      "anomalies/marina.png",
     ],
   },
      p2: {

@@ -101,6 +101,17 @@ useEffect(() => {
 }
 const [userMessage, setUserMessage] = useState("");
 const [sentMessage, setSentMessage] = useState("");
+useEffect(() => {
+  if (phase !== "match") return;
+
+  const timer = setTimeout(() => {
+    if (!userMessage.trim() && matchedAnomaly) {
+      sendMessage();
+    }
+  }, 10000);
+
+  return () => clearTimeout(timer);
+}, [phase, userMessage, matchedAnomaly]);
  function swipe(dir: "match" | "reject") {
   const next = [...swipes, dir];
   setSwipes(next);
@@ -132,7 +143,6 @@ const creepyMessages = [
 ];
 function sendMessage() {
   if (!matchedAnomaly) return;
-  if (!userMessage.trim()) return;
 
   setSentMessage(userMessage);
   setUserMessage("");
@@ -264,8 +274,6 @@ function sendMessage() {
   onContinue: () => void;
 }) {
   const [step, setStep] = useState(0);
-  const [step2,setStep2] = useState(0);
-
   const texts = [
      "...",
     "Parabens Você sobreviveu.",
@@ -285,6 +293,7 @@ function sendMessage() {
       return () => clearTimeout(timer);
     }
   }, [step]);
+  
   return (
     <Card className="p-8 bg-black border-0 text-center">
       <div className="min-w-[300px] min-h-[250px] flex items-center justify-center">
@@ -307,6 +316,7 @@ function sendMessage() {
     </Card>
   );
 }
+
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center px-4 py-6">
        {phase !== "story" && <Header day={save.day} />}
@@ -343,6 +353,7 @@ function sendMessage() {
   day={save.day}
 />
         )}
+        
     {phase === "match" && matchedAnomaly && (() => {
   const profileIndex = Number(
     matchedAnomaly.id.replace(/[pf]/g, "")
@@ -365,13 +376,14 @@ function sendMessage() {
   className="w-70 h-70 rounded-full object-cover shadow-2xl"
 />
     </div>
-    <Card className=" border-2 border-red-800 w-full max-w-sm p-4 mb-4 min-h-[80px] bg-red-500">
+    <Card className=" border-2 border-red-800 w-full max-w-sm p-4 mb-4 min-h-[80px] bg-white">
      {sentMessage && (
     <div className="mb-3 text-right">
       <span className="text-xs text-gray-500">Você</span>
       <p className="text-black">{sentMessage}</p>
     </div>
   )}
+  
 
   {anomalyMessage && (
     <div>
@@ -414,6 +426,8 @@ function sendMessage() {
 
   );
 })()}
+
+
         {phase === "reward" && (
   <RewardIntro
     onContinue={() => {
@@ -913,7 +927,7 @@ function WonView({ onReset }: { onReset: () => void }) {
         <Button
           onClick={onReset}
           size="lg"
-          className="w-full"
+          className="w-full bg-black text-white"
         >
           Recomeçar
         </Button>
