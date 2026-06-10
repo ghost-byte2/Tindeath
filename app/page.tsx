@@ -7,6 +7,7 @@ import { generateDay, type DayProfile } from "./profiles";
 import { Undo2 } from "lucide-react";
 import { FINAL_DAY_PROFILES } from "./profiles";
 import { Input } from "./components/ui/input";
+import Link from "next/link";
 
 type Phase =
   | "story"
@@ -362,16 +363,17 @@ function sendMessage() {
   ) - 1;
   const finalProfile = FINAL_DAY_PROFILES[profileIndex];
   return (
-   <div className="  fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-purple-600 via-red-400 to-purple-700 p-6 animate-in fade-in duration-500">
-    <h1 className="text-5xl font-bold mb-2 tracking-wider drop-shadow-lg">
-      It's a Match!
+   <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-purple-600 via-red-400 to-purple-700 p-6 animate-in fade-in duration-[1000ms]">
+    <h1 className=" text-red-600 text-5xl font-bold mb-2 tracking-wider drop-shadow-lg">
+      It's a Match<b className="text-red-600"> ‪‪❤︎‬</b>
     </h1>
-    <Heart></Heart>
+    
     <p className="text-white/90 mb-8 text-center">
-      Você e {matchedAnomaly.name} curtiram um ao outro
+      Você e {matchedAnomaly.name} curtiram um ao outro 😍 mande sua mensagem...
     </p>
+     
 
-    <div className="flex items-center gap-4 mb-8">
+    <div className="flex items-center gap-4 mb-5">
   <img
   src={finalProfile?.photos[0] ?? matchedAnomaly.photos[1]}
   alt={matchedAnomaly.name}
@@ -424,6 +426,13 @@ function sendMessage() {
     >
       {typing ? "Digitando..." : "Enviar mensagem"}
     </Button>
+   <Link
+  href=""
+  onClick={sendMessage}
+  className="fixed bottom-20 left-1/2 -translate-x-1/2 text-white"
+>
+  Deixar pra depois
+</Link>
   </div>
 
   );
