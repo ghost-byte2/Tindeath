@@ -101,17 +101,17 @@ useEffect(() => {
 }
 const [userMessage, setUserMessage] = useState("");
 const [sentMessage, setSentMessage] = useState("");
-useEffect(() => {
-  if (phase !== "match") return;
+//useEffect(() => {
+ // if (phase !== "match") return;
 
-  const timer = setTimeout(() => {
-    if (!userMessage.trim() && matchedAnomaly) {
-      sendMessage();
-    }
-  }, 10000);
+ // const timer = setTimeout(() => {
+ //   if (!userMessage.trim() && matchedAnomaly) {
+  //    sendMessage();
+  //  }
+ // }, 10000);
 
-  return () => clearTimeout(timer);
-}, [phase, userMessage, matchedAnomaly]);
+ // return () => clearTimeout(timer);
+//}, [phase, userMessage, matchedAnomaly]);
  function swipe(dir: "match" | "reject") {
   const next = [...swipes, dir];
   setSwipes(next);
@@ -362,7 +362,7 @@ function sendMessage() {
   ) - 1;
   const finalProfile = FINAL_DAY_PROFILES[profileIndex];
   return (
-   <div className="  fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-rose-500 via-red-500 to-red-800 p-6 animate-in fade-in duration-500">
+   <div className="  fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-purple-600 via-red-400 to-purple-700 p-6 animate-in fade-in duration-500">
     <h1 className="text-5xl font-bold mb-2 tracking-wider drop-shadow-lg">
       It's a Match!
     </h1>
@@ -381,7 +381,7 @@ function sendMessage() {
     <Card className=" border-2 border-red-800 w-full max-w-sm p-4 mb-4 min-h-[80px] bg-white">
      {sentMessage && (
     <div className="mb-3 text-right">
-      <span className="text-xs text-gray-500">Você</span>
+      <span className="text-xs text-gray-500">Me</span>
       <p className="text-black">{sentMessage}</p>
     </div>
   )}
@@ -494,7 +494,7 @@ function StoryIntro({
   if (step < texts.length - 1) {
     const timer = setTimeout(() => {
       setStep((s) => s + 1);
-    }, 2100);
+    }, 1800);
 
     return () => clearTimeout(timer);
   }
