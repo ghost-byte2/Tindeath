@@ -102,17 +102,17 @@ useEffect(() => {
 }
 const [userMessage, setUserMessage] = useState("");
 const [sentMessage, setSentMessage] = useState("");
-//useEffect(() => {
- // if (phase !== "match") return;
+useEffect(() => {
+  if (phase !== "match") return;
 
- // const timer = setTimeout(() => {
- //   if (!userMessage.trim() && matchedAnomaly) {
-  //    sendMessage();
-  //  }
- // }, 10000);
+  const timer = setTimeout(() => {
+    if (!userMessage.trim() && matchedAnomaly) {
+      sendMessage();
+    }
+  }, 10000);
 
- // return () => clearTimeout(timer);
-//}, [phase, userMessage, matchedAnomaly]);
+  return () => clearTimeout(timer);
+}, [phase, userMessage, matchedAnomaly]);
  function swipe(dir: "match" | "reject") {
   const next = [...swipes, dir];
   setSwipes(next);
@@ -426,13 +426,15 @@ function sendMessage() {
     >
       {typing ? "Digitando..." : "Enviar mensagem"}
     </Button>
-   <Link
+  {/*
+<Link
   href=""
   onClick={sendMessage}
   className="fixed bottom-20 left-1/2 -translate-x-1/2 text-white"
 >
   Deixar pra depois
 </Link>
+*/}
   </div>
 
   );
