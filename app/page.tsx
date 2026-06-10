@@ -135,11 +135,13 @@ useEffect(() => {
   }
 }
 const creepyMessages = [
-  "oi... eu já tô na sua porta 🙂",
-  "obrigada pelo match. não se vire.",
+  "oi... eu já tô na sua porta haha",
+  "valeu pelo match agora... não se vire.",
   "vc mora no número {n}, certo? to subindo.",
   "te vi pela janela agora. continua deslizando.",
   "vc não devia ter dado match comigo...",
+  "gostei da blusa que vc tá usando agora.",
+  "oi cheguei...abre a porta, tá frio"
 ];
 function sendMessage() {
   if (!matchedAnomaly) return;
