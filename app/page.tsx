@@ -141,8 +141,8 @@ const creepyMessages = [
   "vc mora no número {n}, certo? to subindo.",
   "te vi pela janela agora. continua deslizando.",
   "vc não devia ter dado match comigo...",
-  "gostei da blusa que vc tá usando agora.",
-  "oi cheguei...abre a porta, tá frio"
+  "cuidado eu posso esta em sua casa😈",
+  "estou embaixo da sua cama..."
 ];
 function sendMessage() {
   if (!matchedAnomaly) return;
@@ -904,6 +904,7 @@ function WonView({ onReset }: { onReset: () => void }) {
   "Reiniciando sistema...",
   "Restabelecendo conexão...",
   "System success: Anomalias removidas.Perfis corrompidos apagados.",
+  "",
   "voce conseguiu.",
   "As notificações finalmente pararam.",
   "Mas algumas perguntas continuam sem resposta.",

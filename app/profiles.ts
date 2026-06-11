@@ -74,8 +74,19 @@ export const CANONICAL_PROFILES: Profile[] = [
     ],
     bio: "Tatuador há 10 anos.Gosto de academia e fisiculturismo. Procuro conversa boa prefiro conversar pessoalmente em um lugar qualquer.",
   },
-  {
+   {
     id: "p7",
+    name: "Vanessa",
+    age: 27,
+    photos: [
+        "/profiles/vanessa.png",
+        "/profiles/vanessa2.png",
+        "/profiles/vanessa3.png",
+    ],
+    bio: "Professora de estetica.Alguem cuja a personalidade intensa a viver com amor. Amo SOAD. gosto de jogar video game",
+  },
+   {
+    id: "p8",
     name: "Beatriz",
     age: 45,
     photos: [
@@ -153,8 +164,19 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     ],
     bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica veterinária.Entidades associadas: 3 felinos domésticos.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos. Ela sabe quando você está mentindo."
   }, 
-   {
+    {
     id: "f7",
+    name: "ninguem",
+    age: 10,
+    photos: [
+      "/anomalies/vanessa2.png",
+      "/anomalies/vanessa2.png",
+      "/anomalies/vanessa2.png"
+    ],
+    bio: "Você notou alguma anomalia hoje?.| ERROR_ANOMALIES: ANOMALIA_CRÍTICA > O usuário começou a fazer parte do sistema..."
+  },  
+   {
+    id: "f8",
     name: "Quem sou eu? Continue...",
     age: 10,
     photos: [
@@ -198,9 +220,13 @@ export const PROFILE_BIO_ANOMALIES: Record<string, string[]> = {
    p6: [
     "Tatuador há 10 anos.Gosto de academia e  de correr. Procuro conversa boa prefiro conversar pessoalmente em um lugar qualquer a noite."
   ],
-   p7: [
+    p7: [
+    "Professora de estetica. cuja personalidade Ai professora que materia dificil😅. Amo SOAD. gosto de video games.",
+  ],
+   p8: [
     "Estudante de Matematica. Apaixonada por livros de algoritimos, um bom filme e por noites longas.",
   ],
+  
 };
 export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
   p1: [
@@ -221,7 +247,10 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
   p6: [
     "MATHEUS"
   ],
-  p7: [
+  p7 : [
+    "Vanessinhaww"
+  ],
+  p8: [
     "Bianca"
   ],
 }
@@ -272,7 +301,12 @@ export const PROFILE_ANOMALIES: Record<
        "/anomalies/marlon2.png", 
     ],
   },
-   p7: {
+  p7 : {
+    1:[
+      "/anomalies/vanessa.png"
+    ],
+  },
+     p8: {
     2: [
        "/anomalies/beatriz1.png",
     ],
