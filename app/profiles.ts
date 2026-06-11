@@ -107,7 +107,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
   ],
-  bio: "GET-OUT Isso e uma anomalia em nosso sistema GET OUT. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
+  bio: "Error_GET-OUT Isso e uma anomalia em nosso sistema GET OUT. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
 },
   {
     id: "f2",
@@ -129,51 +129,51 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/meg2.png",
       "/anomalies/meg2.png"
     ],
-    bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES >A mensagem nao foi entregue"
+    bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES as null >Mensagem nao foi entregue"
   },  
     {
     id: "f4",
-    name: "CONTINUE",
+    name: "USER.FOUND(anomalie)",
     age: 10,
     photos: [
       "/anomalies/lucas4.png",
       "/anomalies/lucas4.png",
       "/anomalies/lucas4.png"
     ],
-    bio: "Nao olhe para tras.| ERRO_[ANOMALIA] Você ignorou algo importante."
+    bio: "Usuario admin | ERRO_[ANOMALIA] Você ignorou algo importante?usuario faz parte do SISTEMA."
   },  
     {
     id: "f5",
-    name: "CONTINUE",
+    name: "ANOMALIE(TRUE)",
     age: 10,
     photos: [
       "/anomalies/camila2.png",
       "/anomalies/camila2.png",
       "/anomalies/camila2.png"
     ],
-    bio: "deslize um pouco mais...| ERRO_FATAL: Não existem mais perfis válidos."
+    bio: "A VERDADE | ERRO_FATAL: ANOMALIE_TEXT.REPORT> Quem e voce diante da verdade?...voce nao deve"
   },  
    {
     id: "f6",
-    name: "ANOMALIA-087|ERRO_USER",
+    name: "Continue... |ERRO_USER",
     age: 10,
     photos: [
       "/anomalies/marlon1.png",
       "/anomalies/marlon1.png",
       "/anomalies/marlon1.png"
     ],
-    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica veterinária.Entidades associadas: 3 felinos domésticos.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos. Ela sabe quando você está mentindo."
+    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 3 pessoas.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos."
   }, 
     {
     id: "f7",
-    name: "ninguem",
+    name: "ANOMALIA_?|ERRO_USER",
     age: 10,
     photos: [
       "/anomalies/vanessa2.png",
       "/anomalies/vanessa2.png",
       "/anomalies/vanessa2.png"
     ],
-    bio: "Você notou alguma anomalia hoje?.| ERROR_ANOMALIES: ANOMALIA_CRÍTICA > O usuário começou a fazer parte do sistema..."
+    bio: "ERROR_ANOMALIES: ANOMALIE-? LOG:intensive love>VOCE FOI ACEITO Por que ainda tem medo?."
   },  
    {
     id: "f8",
@@ -184,7 +184,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/beatriz1.png",
       "/anomalies/beatriz1.png"
     ],
-    bio: "Você notou alguma anomalia hoje?.| ERROR_ANOMALIES: ANOMALIA_CRÍTICA > O usuário começou a fazer parte do sistema..."
+    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 3 pessoas.Comportamento: Hostil a mentiras.Aviso: Se voce encontrar ele sinta se em casa."
   },  
 ];
 
@@ -280,9 +280,6 @@ export const PROFILE_ANOMALIES: Record<
     ],
   },
     p4: {
-    0:[
-      "anomalies/lucas4.png",
-      ],
     1: [
       "/anomalies/lucas2.png",
     ],
@@ -297,6 +294,9 @@ export const PROFILE_ANOMALIES: Record<
     ],
   },
    p6: {
+    1: [
+     "/anomalies/marlon1"
+    ],
     2: [
        "/anomalies/marlon2.png", 
     ],

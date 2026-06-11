@@ -941,7 +941,7 @@ function WonView({ onReset }: { onReset: () => void }) {
         <Button
           onClick={onReset}
           size="lg"
-          className="w-full bg-black text-white"
+          className="w-full bg-black text-white hover:bg-black"
         >
           Recomeçar
         </Button>
