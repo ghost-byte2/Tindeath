@@ -694,7 +694,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
       {day === 1 && (
         <>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Hoje você verá os 7 perfis na forma original. Memorize cada nome,
+            Hoje você verá os 7 perfis na forma original. Memorize cada nome,idade,
             foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
             anomalias e recuse o match.
           </p>
