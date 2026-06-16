@@ -137,7 +137,7 @@ O jogador perde quando:
 
 ---
 
-## 🧩 Principais Mecânicas
+##  Principais Mecânicas
 
 * Memória visual
 * Observação de detalhes
@@ -147,7 +147,7 @@ O jogador perde quando:
 
 ---
 
-## 🎯 Objetivo do Jogo
+##  Objetivo do Jogo
 
 Memorize.
 
