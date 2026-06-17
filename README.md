@@ -1,5 +1,6 @@
 
 # Boas vindas ao Tindeath
+<img src="/tindeath/public/capa.png">
 
 Um jogo de terror psicológico e observação inspirado em aplicativos de relacionamento.
 
@@ -68,58 +69,6 @@ O jogador deve comparar o perfil atual com a versão original memorizada e decid
 
 As anomalias podem ocorrer em qualquer elemento do perfil.
 
-### Alteração de Nome
-
-Original:
-
-Amanda
-
-Anomalia:
-
-Amandaa
-
----
-
-### Alteração de Idade
-
-Original:
-
-24 anos
-
-Anomalia:
-
-240 anos
-
----
-
-### Alteração de Foto
-
-Possíveis mudanças:
-
-* Olhos diferentes
-* Objetos adicionais
-* Pessoas extras na imagem
-* Mudanças faciais
-* Expressões anormais
-
----
-
-### Alteração de Descrição
-
-Original:
-
-"Gosto de viajar e ouvir música."
-
-Anomalia:
-
-"Gosto de viajar e observar pessoas dormindo."
-
----
-
-### Alteração Completa
-
-Em níveis mais avançados, todos os elementos do perfil podem ser modificados simultaneamente.
-
 ---
 
 ##  Condições de Vitória
@@ -137,7 +86,7 @@ O jogador perde quando:
 
 ---
 
-## 🧩 Principais Mecânicas
+##  Principais Mecânicas
 
 * Memória visual
 * Observação de detalhes
@@ -147,7 +96,7 @@ O jogador perde quando:
 
 ---
 
-## 🎯 Objetivo do Jogo
+##  Objetivo do Jogo
 
 Memorize.
 
