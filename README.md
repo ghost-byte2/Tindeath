@@ -50,9 +50,13 @@ Todos os perfis exibidos são originais e não possuem alterações.
 O jogador deve memorizar:
 
  Aparência dos personagens,
+ <br/>
  Nome,
+ <br/>
  Idade,
+ <br/>
  Descrição,
+ <br/>
  Características visuais importantes,
 
 ### Dias 2 a 9
@@ -76,6 +80,7 @@ O jogador vence quando consegue sobreviver até o final do **Dia 9**.
 O jogador perde quando:
 
  Dá match em um perfil com anomalia.
+ <br/>
  Não consegue sobreviver até o último dia.
 
 ---
