@@ -20,10 +20,10 @@ O jogo utiliza uma interface inspirada em aplicativos de relacionamento.
 
 Cada perfil possui:
 
-* Foto
-* Nome
-* Idade
-* Descrição
+ Foto,
+ Nome,
+ Idade,
+ Descrição,
 
 O jogador deve analisar cuidadosamente cada informação antes de tomar uma decisão.
 
@@ -49,11 +49,11 @@ Todos os perfis exibidos são originais e não possuem alterações.
 
 O jogador deve memorizar:
 
-* Aparência dos personagens
-* Nome
-* Idade
-* Descrição
-* Características visuais importantes
+ Aparência dos personagens,
+ Nome,
+ Idade,
+ Descrição,
+ Características visuais importantes,
 
 ### Dias 2 a 9
 
@@ -62,12 +62,6 @@ Os mesmos perfis continuam aparecendo.
 Entretanto, alguns deles podem apresentar mudanças inesperadas.
 
 O jogador deve comparar o perfil atual com a versão original memorizada e decidir se ele é seguro ou não.
-
----
-
-## Sistema de Anomalias
-
-As anomalias podem ocorrer em qualquer elemento do perfil.
 
 ---
 
@@ -81,18 +75,8 @@ O jogador vence quando consegue sobreviver até o final do **Dia 9**.
 
 O jogador perde quando:
 
-* Dá match em um perfil com anomalia.
-* Não consegue sobreviver até o último dia.
-
----
-
-##  Principais Mecânicas
-
-* Memória visual
-* Observação de detalhes
-* Comparação de informações
-* Identificação de anomalias
-* Tomada de decisão 
+ Dá match em um perfil com anomalia.
+ Não consegue sobreviver até o último dia.
 
 ---
 
