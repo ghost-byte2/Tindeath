@@ -1,6 +1,6 @@
 
 # Boas vindas ao Tindeath
-<img src="/capa.png">
+![Capa do Tindeath](./public/capa.png)
 
 Um jogo de terror psicológico e observação inspirado em aplicativos de relacionamento.
 
