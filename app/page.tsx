@@ -186,7 +186,7 @@ function sendMessage() {
           restartAudio();
           setPendingDeath(true);
           setPhase("jumpscare");
-        }, 1800);
+        }, 1200);
       }
     }, 60);
   }, 1000);
@@ -631,7 +631,7 @@ function Header({ day }: { day: number }) {
 function Footer() {
   return (
     <p className="pt-6 text-[10px] uppercase tracking-widest text-muted-foreground">
-      9 dias. 7 perfis. Uma chance.
+      9 dias. 8 perfis. Uma chance.
     </p>
   );
 }
@@ -694,7 +694,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
       {day === 1 && (
         <>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Hoje você verá os 7 perfis na forma original. Memorize cada nome,idade,
+            Hoje você verá os 8 perfis na forma original. Memorize cada nome,idade,
             foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
             anomalias e recuse o match.
           </p>

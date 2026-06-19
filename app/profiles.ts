@@ -107,7 +107,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
   ],
-  bio: "Error_GET-OUT Isso e uma anomalia em nosso sistema GET OUT. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
+  bio: "Error_GET-OUT Isso e uma anomalia em nosso sistema. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
 },
   {
     id: "f2",
@@ -122,14 +122,14 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   },  
    {
     id: "f3",
-    name: "NAO CHORE",
+    name: "HELP US",
     age: 10,
    photos: [
       "/anomalies/meg2.png",
       "/anomalies/meg2.png",
       "/anomalies/meg2.png"
     ],
-    bio: " ME AJUDA... userSendMessage() ERROR_CRITICAL.ANOMALIES as null >Mensagem nao foi entregue"
+    bio: "userSendMessage() ERROR_CRITICAL.ANOMALIES as null >Mensagem nao foi entregue"
   },  
     {
     id: "f4",
@@ -144,14 +144,14 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   },  
     {
     id: "f5",
-    name: "ANOMALIE(TRUE)",
+    name: "truth don't lie",
     age: 10,
     photos: [
       "/anomalies/camila2.png",
       "/anomalies/camila2.png",
       "/anomalies/camila2.png"
     ],
-    bio: "A VERDADE | ERRO_FATAL: ANOMALIE_TEXT.REPORT> Quem e voce diante da verdade?...voce nao deve"
+    bio: "A VERDADE | ERRO_FATAL: ANOMALIE_TEXT.REPORT> A Verdade voce consegue ver ?"
   },  
    {
     id: "f6",
@@ -173,11 +173,11 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/vanessa2.png",
       "/anomalies/vanessa2.png"
     ],
-    bio: "ERROR_ANOMALIES: ANOMALIE-? LOG:intensive love>VOCE FOI ACEITO Por que ainda tem medo?."
+    bio: "ERROR_ANOMALIES: ANOMALIE-? LOG:DEAD >Pessoas mortas podem viver?"
   },  
    {
     id: "f8",
-    name: "Quem sou eu? Continue...",
+    name: "ERRO_USER | Continue...",
     age: 10,
     photos: [
       "/anomalies/beatriz1.png",
@@ -295,7 +295,7 @@ export const PROFILE_ANOMALIES: Record<
   },
    p6: {
     1: [
-     "/anomalies/marlon1"
+     "/anomalies/marlon1.png"
     ],
     2: [
        "/anomalies/marlon2.png", 
@@ -308,7 +308,7 @@ export const PROFILE_ANOMALIES: Record<
   },
      p8: {
     2: [
-       "/anomalies/beatriz1.png",
+       "/anomalies/beatriz2.png",
     ],
   },
 
