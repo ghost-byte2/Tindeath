@@ -7,8 +7,6 @@ import { generateDay, type DayProfile } from "./profiles";
 import { Undo2 } from "lucide-react";
 import { FINAL_DAY_PROFILES } from "./profiles";
 import { Input } from "./components/ui/input";
-import Link from "next/link";
-
 type Phase =
   | "story"
   | "intro"
@@ -23,6 +21,7 @@ type Phase =
 
 const STORAGE_KEY = "tindeath::v1";
 type Save = { day: number; runSeed: string };
+//funçao faz verificão dos dias e depois tenta pega os resultados no localstorage
 function loadSave(): Save {
   if (typeof window === "undefined") return { day: 1, runSeed: "seed-1" };
   try {
@@ -31,13 +30,13 @@ function loadSave(): Save {
   } catch {}
   return { day: 1, runSeed: `seed-${Date.now()}` };
 }
-
+//salva as informaçoes no localstorage
 function saveSave(s: Save) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
   } catch {}
 }
-
+//funcao principal
 export default function TindeathGame() {
  const [save, setSave] = useState<Save>({
   day: 1,
@@ -60,19 +59,21 @@ const profileIndex = Number(
 const finalProfile = FINAL_DAY_PROFILES[profileIndex];
 const [anomalyMessage, setAnomalyMessage] = useState("");
 const [typing, setTyping] = useState(false);
+//loop na musica do jogo
 function restartAudio() {
   if (audioRef.current) {
     audioRef.current.currentTime = 0;
     audioRef.current.play();
   }
 }
-
+  //procura se os perfis com e sem anomalias gera e salva o dia
   const profiles = useMemo<DayProfile[]>(
     () => generateDay(save.runSeed, save.day),
     [save.runSeed, save.day],
   );
   const anomaliesExist = profiles.some((p) => p.hasAnomaly);
   const startedAudioRef = useRef(false);
+  //efeito para configuraçao do audio e loop
 useEffect(() => {
   const audio = new Audio("/haha2.mp3");
   audio.loop = true;
@@ -83,17 +84,19 @@ useEffect(() => {
     audio.pause();
   };
 }, []);
+//funçao disparada quando começa um novo dia no jogo 
  function startDay() {
   setIndex(0);
   setSwipes([]);
   setLastWrong(null);
   setPhase("swiping");
-
+//condiçao para restart do audio
   if (!startedAudioRef.current) {
     restartAudio();
     startedAudioRef.current = true;
   }
 }
+//funçao para voltar ao perfil anterior
   function goBack() {
   if (index > 0) {
     setIndex(index - 1);
@@ -103,8 +106,9 @@ useEffect(() => {
 const [userMessage, setUserMessage] = useState("");
 const [sentMessage, setSentMessage] = useState("");
 useEffect(() => {
+  //verifica se a pessoa deu match com uma anomalia e dispara uma mensagem
   if (phase !== "match") return;
-
+// dispara a funçao sendMessage e time-out para a pessoa responder mensagem
   const timer = setTimeout(() => {
     if (!userMessage.trim() && matchedAnomaly) {
       sendMessage();
@@ -117,6 +121,7 @@ useEffect(() => {
   const next = [...swipes, dir];
   setSwipes(next);
   const current = profiles[index];
+  //caso se a pessoa der match com anomalia
   if (
     dir === "match" &&
     current?.hasAnomaly &&
@@ -129,6 +134,7 @@ useEffect(() => {
     setPhase("match");
     return;
   }
+  //verifica se o usuario acertou ou errou
   if (index + 1 >= profiles.length) {
     setPhase("verdict");
   } else {
@@ -144,6 +150,7 @@ const creepyMessages = [
   "cuidado eu posso esta em sua casa😈",
   "estou embaixo da sua cama..."
 ];
+//funçao dispara mensagem de match para usuario
 function sendMessage() {
   if (!matchedAnomaly) return;
 
@@ -166,7 +173,7 @@ function sendMessage() {
     const interval = setInterval(() => {
       i++;
       setAnomalyMessage(msg.slice(0, i));
-
+//verfica o texto da mensagem dispara o reset para resetar os dias e dispara um timeout para a mensagem antes de resetar
       if (i >= msg.length) {
         clearInterval(interval);
 
@@ -191,6 +198,7 @@ function sendMessage() {
     }, 60);
   }, 1000);
 }
+//funçao para Jumpscare no jogo que dispara uma imagem com um time-out
  function Jumpscare({
   onFinish,
 }: {
@@ -237,12 +245,12 @@ function sendMessage() {
   return;
 }
   const correct = foundAnomaly === anomaliesExist;
-
+//verifica se o jogador perdeu o jogo
  if (!correct) {
   const next = { day: 1, runSeed: `seed-${Date.now()}` };
   setSave(next);
   saveSave(next);
-
+//dispara um texto para o usuario na tela
   setLastWrong(
     anomaliesExist
       ? "Havia anomalia. Você não percebeu. Ela já está em sua casa..."
@@ -253,16 +261,19 @@ function sendMessage() {
   setPhase("jumpscare");
   return;
 }
+//verifica se usuario chegou no dia 9 para resgatar recompensa
   if (save.day == 9) {
     restartAudio();
     setPhase("reward");
     return;
   }
+  //dispara a funcao se o usuario acertar o dia e pula pro prox dia
   const next = { ...save, day: save.day + 1 };
   setSave(next);
   saveSave(next);
   setPhase("result");
 }
+//funçao para resetar para o começo
   function resetRun() {
     const next = { day: 1, runSeed: `seed-${Date.now()}` };
     setSave(next);
@@ -270,7 +281,7 @@ function sendMessage() {
     setPhase("intro");
     restartAudio();
   }
-
+//funçao para resgatar sua recompensa no final
  function RewardIntro({
   onContinue,
 }: {
@@ -288,6 +299,7 @@ function sendMessage() {
     "para receber sua recompensa :)"
   ];
   useEffect(() => {
+    //verifica os textos e lança um time-out para eles aparecerem
     if (step < texts.length - 1) {
       const timer = setTimeout(() => {
         setStep((s) => s + 1);
@@ -388,7 +400,6 @@ function sendMessage() {
     </div>
   )}
   
-
   {anomalyMessage && (
     <div>
       <span className="text-xs text-gray-500">
@@ -406,15 +417,13 @@ function sendMessage() {
             {matchedAnomaly.name}
           </span>
         </div>
-      ) : (  
-       
+      ) : (      
  <Input
   value={userMessage}
   onChange={(e) => setUserMessage(e.target.value)}
   placeholder="Digite uma mensagem..."
   className="w-full !bg-white max-w-sm !border-red-800 placeholder:text-zinc-400 text-black"
 />
-
       )}
     </Card>
 
@@ -422,24 +431,13 @@ function sendMessage() {
       onClick={sendMessage}
       disabled={typing}
       size="lg"
-      className=" border border-white/40 w-full max-w-sm bg-red-400 text-white hover:bg-white/90 font-bold"
+      className=" border border-white/40 w-full max-w-sm bg-red-700 text-white hover:bg-red-800 font-bold"
     >
       {typing ? "Digitando..." : "Enviar mensagem"}
     </Button>
-  {/*
-<Link
-  href=""
-  onClick={sendMessage}
-  className="fixed bottom-20 left-1/2 -translate-x-1/2 text-white"
->
-  Deixar pra depois
-</Link>
-*/}
   </div>
-
   );
 })()}
-
 
         {phase === "reward" && (
   <RewardIntro
@@ -448,10 +446,8 @@ function sendMessage() {
         ...save,
         day: 10,
       };
-
       setSave(next);
       saveSave(next);
-
       setPhase("systemError");
     }}
   />
@@ -540,6 +536,7 @@ function StoryIntro({
   </Card>
 );
 }
+//funçao tela no dia final
 function SystemError({ onFinish }: { onFinish: () => void }) {
   const [step, setStep] = useState(0);
   const [showErrorScreen, setShowErrorScreen] = useState(false);
@@ -581,7 +578,7 @@ function SystemError({ onFinish }: { onFinish: () => void }) {
 
     return () => clearTimeout(timer);
   }, [showErrorScreen, onFinish]);
-
+  //dispara showError efeito no final com textos e depois a tela de error
   if (!showErrorScreen) {
     return (
       <div className="fixed inset-0 bg-black flex items-center justify-center">
@@ -611,7 +608,7 @@ function SystemError({ onFinish }: { onFinish: () => void }) {
     </div>
   );
 }
-
+//header do jogo
 function Header({ day }: { day: number }) {
   return (
     <header className="w-full max-w-md flex items-center justify-between pb-4">
@@ -627,7 +624,7 @@ function Header({ day }: { day: number }) {
     </header>
   );
 }
-
+//rodape do jogo
 function Footer() {
   return (
     <p className="pt-6 text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -635,13 +632,15 @@ function Footer() {
     </p>
   );
 }
-
+// intro do jogo 
 function Intro({ onStart, day }: { onStart: () => void; day: number }) {
  useEffect(() => {
+  //verificaçao dos dias
   if (day > 1 && day !== 10) {
     onStart();
   }
 }, [day, onStart]);
+//dunçao dispara dia final 10
   function FinalDayIntro({
   onStart,
 }: {
@@ -652,7 +651,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   const texts = [
     "voce acordou...dia 10",
   ];
-
+//dispara os textos da intro
   useEffect(() => {
     if (step < texts.length - 1) {
       const timer = setTimeout(() => {
@@ -680,6 +679,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
     </Card>
   );
 }
+//verifica dia 10 e dispara a finalDayintro
  if (day === 10) {
   return <FinalDayIntro onStart={onStart} />;
 }
@@ -709,6 +709,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   );
   
 }
+
 function SwipeView({
   profile,
   index,
@@ -725,7 +726,7 @@ function SwipeView({
   day: number;
 }) {
   const [photoIdx, setPhotoIdx] = useState(0);
-  // Reset photo when profile changes
+  // Redefinir indice foto quando o perfil for alterado
   useEffect(() => {
     setPhotoIdx(0);
   }, [day, index]);
@@ -743,7 +744,7 @@ function SwipeView({
     src={profile.photos[photoIdx]}
     alt=""
   />
-          {/* Tinder-style photo segments */}
+          {/* Segmentos de fotos */}
           <div className="absolute top-2 inset-x-2 flex gap-1">
             {Array.from({ length: photoCount }).map((_, i) => (
               <div
@@ -778,7 +779,7 @@ function SwipeView({
             </div>
           </div>
         </div>
-        {/* Thumbnail strip */}
+        {/* biografia do perfil */}
         <div className="p-4">
           <p className="text-sm leading-relaxed text-foreground/90 h-15">
             {profile.bio}
@@ -812,7 +813,7 @@ function SwipeView({
     </div>
   );
 }
-
+//funçao disparada no final do dia 
 function Verdict({
   onAnswer,
   day,
@@ -849,7 +850,7 @@ function Verdict({
       </div>
   );
 }
-
+//funçao verifica se o usuario acertou ou nao no fim do dia
  function ResultView({
   died,
   message,
@@ -895,7 +896,7 @@ function Verdict({
  </div>
   );
 }
-
+//funçao disparada no final do dia 10
 function WonView({ onReset }: { onReset: () => void }) {
   const [step, setStep] = useState(0);
 
