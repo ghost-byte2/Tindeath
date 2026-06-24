@@ -100,25 +100,25 @@ export const CANONICAL_PROFILES: Profile[] = [
 export const FINAL_DAY_PROFILES: Profile[] = [
  {
   id: "f1",
-  name: "ANOMALIA",
+  name: "ANOMALIE",
   age: 10,
   photos: [
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
   ],
-  bio: "Error_GET-OUT Isso e uma anomalia em nosso sistema. ERRO: Perfil não encontrado. [ANOMALIA_DETECTADA]"
+  bio: "ANOMALIA-087 Ocupação:ERR_LOG_anomalie .User Error_GET-OUT Aviso: SORRIA...  "
 },
   {
     id: "f2",
-    name: "NAO OLHE",
+    name: "DOn't LOOCK",
     age: 10,
     photos: [
       "/anomalies/felipe2.png",
       "/anomalies/felipe2.png",
       "/anomalies/felipe2.png",
     ],
-    bio: "Carregando informações do usuário... ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA."
+    bio: " Anomalie-450 Ocupaçao:ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA - Aviso: Caso voce encontrar nao perca o foco fique de olho nele"
   },  
    {
     id: "f3",
@@ -129,7 +129,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/meg2.png",
       "/anomalies/meg2.png"
     ],
-    bio: "userSendMessage() ERROR_CRITICAL.ANOMALIES as null >Mensagem nao foi entregue"
+    bio: " Anomalie-250 Ocupaçao:ERROR_CRITICAL.ANOMALIES as null AVISO: Caso receba uma mensagem dela, não responda.A entidade pode solicitar ajuda, fazer perguntas costumam preceder falhas críticas."
   },  
     {
     id: "f4",
@@ -140,18 +140,18 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/lucas4.png",
       "/anomalies/lucas4.png"
     ],
-    bio: "Usuario admin | ERRO_[ANOMALIA] Você ignorou algo importante?usuario faz parte do SISTEMA."
+    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() aviso: ele sabera te ajudar Siga as regras do jogo e ficara bem "
   },  
     {
     id: "f5",
-    name: "truth don't lie",
+    name: "THE TRUTH",
     age: 10,
     photos: [
       "/anomalies/camila2.png",
       "/anomalies/camila2.png",
       "/anomalies/camila2.png"
     ],
-    bio: "A VERDADE | ERRO_FATAL: ANOMALIE_TEXT.REPORT> A Verdade voce consegue ver ?"
+    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO: Caso voce a encontre voce podera fazer uma pergunta | ela exigira o preço "
   },  
    {
     id: "f6",
@@ -173,7 +173,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/vanessa2.png",
       "/anomalies/vanessa2.png"
     ],
-    bio: "ERROR_ANOMALIES: ANOMALIE-? LOG:DEAD >Pessoas mortas podem viver?"
+    bio: "ANOMALIA-56 ERROR_ANOMALIES:LOG:DEAD - AVISO: Caso voce a encontre voce foi liberto nao se desespere Testemunhas relatam uma sensação de paz antes da manifestação da anomalia"
   },  
    {
     id: "f8",
@@ -211,7 +211,7 @@ export const PROFILE_BIO_ANOMALIES: Record<string, string[]> = {
    "Alguem cuja mente conturbada precisa de uma ancora pra ficar em pe, atriz, e stremer na roxinha nas horas vagas..."
   ],
    p4: [
-    "Guitarrista nas horas vagas, artista e musica,Toco em bandas de rock indie.",
+    "Guitarrista nas horas vagas, Sinto que ja nos falamos antes,Toco em bandas de rock indie.",
     "Guitarrista nas horas vagas, programador no resto. Toco em bandas de rock indie,Alguém continua cantando quando o palco fica vazio."
   ],
    p5: [

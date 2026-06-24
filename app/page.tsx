@@ -18,7 +18,7 @@ type Phase =
   | "reward"
   | "systemError"
   | "won";
-
+//chave para acessar o localstorage
 const STORAGE_KEY = "tindeath::v1";
 type Save = { day: number; runSeed: string };
 //funçao faz verificão dos dias e depois tenta pega os resultados no localstorage
@@ -651,7 +651,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   const texts = [
     "voce acordou...dia 10",
   ];
-//dispara os textos da intro
+//dispara o texto e verifica o texto depois dispara um timeout
   useEffect(() => {
     if (step < texts.length - 1) {
       const timer = setTimeout(() => {
@@ -690,7 +690,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
         {day === 1 ? "Bem-vindo ao Tindeath." : `Dia ${day}.`}
         
       </h1>
-
+    {/* começo do jogo dia 1 */ }
       {day === 1 && (
         <>
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -709,7 +709,7 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
   );
   
 }
-
+  //funçao para carregar o modal dos perfis
 function SwipeView({
   profile,
   index,
@@ -873,7 +873,7 @@ function Verdict({
       return () => clearTimeout(timer);
     }
   }, [died, onNext]);
-
+  //verificaçao se a pessoa errou
   if (died) {
     return (
   <div>
@@ -890,6 +890,7 @@ function Verdict({
      </div>
     );
   }
+  //retorna o dia seguinte se acertar
   return (
     <div>
       <h2 className=" flex align-center text-center text-2xl font-black text-primary ml-20"> Você acordou...Dia {nextDay}</h2>
