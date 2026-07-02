@@ -1,12 +1,11 @@
 
-# Boas vindas ao Tindeath
 ![Capa do Tindeath](./public/capa.png)
+# Boas vindas ao Tindeath
+Um Web game de terror psicológico e observação inspirado em aplicativos de relacionamento.
 
-Um jogo de terror psicológico e observação inspirado em aplicativos de relacionamento.
+##  Sobre o jogo
 
-##  Sobre o Projeto
-
-**Tindeath** é um jogo de detecção de anomalias onde o jogador deve sobreviver durante **9 dias** dentro de um aplicativo de namoro misterioso.
+**Tindeath** é um web game de detecção de anomalias onde o jogador deve sobreviver durante **9 dias** dentro de um aplicativo de namoro misterioso.
 
 No primeiro dia, todos os perfis apresentados são normais. A partir do segundo dia, alguns perfis começam a sofrer alterações estranhas chamadas **anomalias**.
 

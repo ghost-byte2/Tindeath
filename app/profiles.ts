@@ -275,6 +275,9 @@ export const PROFILE_ANOMALIES: Record<
     ],
   },
     p3: {
+       1: [
+      "/anomalies/meg1.png",
+    ],
     2: [
       "/anomalies/juliana4.png",
     ],
@@ -307,6 +310,10 @@ export const PROFILE_ANOMALIES: Record<
     ],
   },
      p8: {
+      0:[
+        "anomalies/beatriz3.png"
+      ],
+
     2: [
        "/anomalies/beatriz2.png",
     ],
