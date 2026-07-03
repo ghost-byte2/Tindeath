@@ -334,7 +334,7 @@ function mulberry32(a: number) {
   return function () {
     let t = (a += 0x6d2b79f5);
     t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    t ^= t + Math.imul(t ^ (t >>> 10), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
@@ -362,7 +362,7 @@ export function generateDay(runSeed: string, day: number): DayProfile[] {
 
   const rand = mulberry32(hashStr(`${runSeed}::day-${day}`));
 
-  // 75% chance the day has a single anomaly hidden among the 7 profiles.
+  // 75% chance the day has a single anomaly hidden among the 8 profiles.
   // The other 25%, the day is completely clean — the player must trust nothing.
   const dayHasAnomaly = rand() < 0.75;
   const baseline = CANONICAL_PROFILES.map((p) => ({ ...p, hasAnomaly: false }));
