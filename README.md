@@ -1,8 +1,15 @@
 
 ![Capa do Tindeath](./public/capa.png)
 # Boas vindas ao Tindeath
-Um Web game de terror psicológico e observação inspirado em aplicativos de relacionamento.
 
+Você entrou em um aplicativo de relacionamentos comum... ou pelo menos é o que parece.
+ <br/>
+Observe cada perfil com atenção, descubra o que não deveria existir e sobreviva às anomalias escondidas entre pessoas aparentemente normais.
+ <br/>
+Nem todo match quer conhecer você,Cada perfil conta uma história,Alguns escondem algo impossível.
+ <br/>
+acesse agora: https://tindeath.vercel.app/
+ <br/>
 ##  Sobre o jogo
 
 **Tindeath** é um web game de detecção de anomalias onde o jogador deve sobreviver durante **9 dias** dentro de um aplicativo de namoro misterioso.
