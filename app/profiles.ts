@@ -107,7 +107,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     "/anomalies/mulher3.png",
     "/anomalies/mulher3.png",
   ],
-  bio: "ANOMALIA-087 Ocupação:ERR_LOG_anomalie .User Error_GET-OUT Aviso: SORRIA...  "
+  bio: "ANOMALIA-087 Ocupação:ERR_LOG_anomalie .User Error_GET-OUT  "
 },
   {
     id: "f2",
@@ -118,7 +118,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/felipe2.png",
       "/anomalies/felipe2.png",
     ],
-    bio: " Anomalie-450 Ocupaçao:ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA - Aviso: Caso voce encontrar nao perca o foco fique de olho nele"
+    bio: " Anomalie-450 Ocupaçao:ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA"
   },  
    {
     id: "f3",
@@ -133,25 +133,25 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   },  
     {
     id: "f4",
-    name: "USER.FOUND(anomalie)",
+    name: "USER.FOUND",
     age: 10,
     photos: [
       "/anomalies/lucas4.png",
       "/anomalies/lucas4.png",
       "/anomalies/lucas4.png"
     ],
-    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() aviso: ele sabera te ajudar Siga as regras do jogo e ficara bem "
+    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() aviso: ele sabera te ajudar se voce atender o chamado."
   },  
     {
     id: "f5",
-    name: "THE TRUTH",
+    name: "USER.FOUND(anomalie)",
     age: 10,
     photos: [
       "/anomalies/camila2.png",
       "/anomalies/camila2.png",
       "/anomalies/camila2.png"
     ],
-    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO: Caso voce a encontre voce podera fazer uma pergunta | ela exigira o preço "
+    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO: E melhor seguir em frente, nao confie nele"
   },  
    {
     id: "f6",
@@ -173,7 +173,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/vanessa2.png",
       "/anomalies/vanessa2.png"
     ],
-    bio: "ANOMALIA-56 ERROR_ANOMALIES:LOG:DEAD - AVISO: Caso voce a encontre voce foi liberto nao se desespere Testemunhas relatam uma sensação de paz antes da manifestação da anomalia"
+    bio: "ANOMALIA-56 ERROR_ANOMALIES:LOG:DEAD - AVISO: Ele esta com você, não tente fugir, ele sabe onde você esta. Siga as regras do jogo e ficara bem."
   },  
    {
     id: "f8",
@@ -188,10 +188,6 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   },  
 ];
 
-
-export const ANOMALY_NAMES = [
-  "Marisa",
-];
 export const ANOMALY_AGE = [
   60,22,27,41,32,100
 ]
@@ -215,7 +211,7 @@ export const PROFILE_BIO_ANOMALIES: Record<string, string[]> = {
     "Guitarrista nas horas vagas, programador no resto. Toco em bandas de rock indie,Alguém continua cantando quando o palco fica vazio."
   ],
    p5: [
-    "Médica veterinária. Tenho 3 gatos e zero paciência para mentiras. Gosto de um bom vinho e de um bom papo sobre filmes de terror.Eles ficaram olhando para a porta a noite toda..",
+    "Médica veterinária. Tenho 3 gatos e zero paciência para mentiras. Gosto de um bom vinho e filmes de terror.Ele ficava olhando para a porta a noite toda",
   ],
    p6: [
     "Tatuador há 10 anos.Gosto de academia e  de correr. Procuro conversa boa prefiro conversar pessoalmente em um lugar qualquer a noite."

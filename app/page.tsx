@@ -1,12 +1,15 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useMemo, useState,useRef } from "react";
+import Image from "next/image";
 import { Button } from "./components/ui/button";
 import { Card } from "./components/ui/card";
-import { Heart, X, Skull, Flame } from "lucide-react";
+import { Heart, X, Skull, Flame,PhoneCall,Phone,PhoneOff} from "lucide-react";
 import { generateDay, type DayProfile } from "./profiles";
 import { Undo2 } from "lucide-react";
 import { FINAL_DAY_PROFILES } from "./profiles";
 import { Input } from "./components/ui/input";
+import "./style.css";
 type Phase =
   | "story"
   | "intro"
@@ -17,7 +20,9 @@ type Phase =
   | "jumpscare"
   | "reward"
   | "systemError"
-  | "won";
+  | "lucasCall"
+  | "won"
+  | "won2";
 //chave para acessar o localstorage
 const STORAGE_KEY = "tindeath::v1";
 type Save = { day: number; runSeed: string };
@@ -134,6 +139,16 @@ useEffect(() => {
     setPhase("match");
     return;
   }
+  // Final secreto do dia 10
+if (
+  save.day === 10 &&
+  dir === "match" &&
+  current.id === "f4"
+) {
+  setMatchedAnomaly(current);
+  setPhase("lucasCall");
+  return;
+}
   //verifica se o usuario acertou ou errou
   if (index + 1 >= profiles.length) {
     setPhase("verdict");
@@ -241,7 +256,7 @@ function sendMessage() {
     return;
   }
   if (save.day === 10) {
-  setPhase("won");
+  setPhase("won2");
   return;
 }
   const correct = foundAnomaly === anomaliesExist;
@@ -469,7 +484,15 @@ function sendMessage() {
             onReset={resetRun}
           />
         )}
-        {phase === "won" && <WonView onReset={resetRun} />}
+      {phase === "lucasCall" && (
+  <WonView
+    onContinue={() => setPhase("won2")}
+  />
+)}
+
+{phase === "won2" && (
+  <WonView2 onReset={resetRun} />
+)}
       </div>
       <Footer />
     </main>
@@ -704,7 +727,6 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
           </Button>
         </>
       )}
-    
     </Card>
   );
   
@@ -898,7 +920,7 @@ function Verdict({
   );
 }
 //funçao disparada no final do dia 10
-function WonView({ onReset }: { onReset: () => void }) {
+function WonView2({ onReset }: { onReset: () => void }) {
   const [step, setStep] = useState(0);
 
   const texts = [
@@ -947,6 +969,203 @@ function WonView({ onReset }: { onReset: () => void }) {
         >
           Recomeçar
         </Button>
+      )}
+    </Card>
+  );
+}
+type Reply = { text: string; killerSays: string; next: number | "end" };
+type DialogueNode = { id: number; victimMessage: string; replies: Reply[] };
+
+const dialogue: DialogueNode[] = [
+  {
+    id: 0,
+    victimMessage: "Por que tá tudo estranho nesse aplicativo?",
+    replies: [
+      { text: "Parece bem apetitoso.😈", killerSays: "Parece bem apetitoso.😈", next: 1 },
+      { text: "Você não me viu em sua casa?", killerSays: "Você não me viu chegando.", next: 2 },
+    ],
+  },
+  {
+    id: 1,
+    victimMessage: "Como assim?? Para de brincadeira!",
+    replies: [
+      { text: "A brincadeira esta so começando 😈", killerSays: "A brincadeira esta so começando 😈", next: 3 },
+      { text: "Cuidado estou na sua porta", killerSays: "Cuidado estou na sua porta", next: 3 },
+    ],
+  },
+  {
+    id: 2,
+    victimMessage: "Quem e Você? tá me assustando, para agora!",
+    replies: [
+      { text: "Sou seu assassino favorito hahah", killerSays: "Sou seu assassino favorito hahah", next: 3 },
+      { text: "esperei tanto por esse momento 😈", killerSays: "esperei tanto por esse momento 😈", next: 3 },
+    ],
+  },
+  {
+    id: 3,
+    victimMessage: "o que voce ta falando?? Me deixa em paz!",
+    replies: [
+      { text: "Matar vítima 🔪", killerSays: "Esse cachorro ja vai morrer!", next: "end" },
+    ],
+  },
+];
+
+type ChatMsg = { from: "victim" | "killer"; text: string };
+
+function WonView({ onContinue }: { onContinue: () => void }) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [answered, setAnswered] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+
+  const [currentNodeId, setCurrentNodeId] = useState(0);
+  const [history, setHistory] = useState<ChatMsg[]>([]);
+  const [typing, setTyping] = useState(false);
+  const [awaitingChoice, setAwaitingChoice] = useState(false);
+  const [finished, setFinished] = useState(false);
+
+  const currentNode = dialogue.find((n) => n.id === currentNodeId)!;
+
+  useEffect(() => {
+    const audio = new Audio("/celular.mp3");
+    audio.loop = true;
+    audio.volume = 0.3;
+    audio.play();
+    audioRef.current = audio;
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
+
+  // Quando o chat abre ou muda de nó: vítima "digitando" e depois manda a msg
+  useEffect(() => {
+    if (!showChat) return;
+    setTyping(true);
+    setAwaitingChoice(false);
+    const t = setTimeout(() => {
+      setHistory((h) => [...h, { from: "victim", text: currentNode.victimMessage }]);
+      setTyping(false);
+      setAwaitingChoice(true);
+    }, 1400);
+    return () => clearTimeout(t);
+  }, [showChat, currentNodeId]);
+
+  function stopAudio() {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  }
+
+  function answerCall() {
+    if (!audioRef.current) return;
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+
+    const speech = new Audio("/monstro.mp3");
+    speech.volume = 1;
+    audioRef.current = speech;
+    speech.play();
+
+    setAnswered(true);
+    speech.onended = () => setShowChat(true);
+  }
+
+  function chooseReply(reply: Reply) {
+    setAwaitingChoice(false);
+    setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      if (reply.killerSays) {
+        setHistory((h) => [...h, { from: "killer", text: reply.killerSays }]);
+      }
+      if (reply.next === "end") {
+        setFinished(true);
+      } else {
+        setTimeout(() => setCurrentNodeId(reply.next as number), 900);
+      }
+    }, 1500);
+  }
+
+  return (
+    <Card className="p-8 bg-black border-0 text-center">
+      {!showChat ? (
+        <>
+          <img className="ml-8 rounded-full" src="/monstro3.png" alt="" width={300} height={100} />
+          <p className="mt-10 text-2xl text-red-100">Lucas is calling you.</p>
+
+          {!answered ? (
+            <div className="mt-20 flex justify-center gap-40">
+              <PhoneOff
+                onClick={() => { stopAudio(); onContinue(); }}
+                className="w-15 h-15 text-red-500 rounded-xl bg-red-500/30 p-2"
+              />
+              <Phone
+                onClick={answerCall}
+                className="float cursor-pointer text-green-500 w-15 h-15 rounded-xl bg-green-500/30 p-2"
+              />
+            </div>
+          ) : (
+            <div className="mt-20 flex justify-center">
+              <PhoneOff onClick={stopAudio} className="w-15 h-15 text-red-500 rounded-xl bg-red-500/30 p-2" />
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black via-black to-red-600 p-6">
+          <div className="">
+             <h1 className="text-5xl text-red-500 font-bold">It's a Match</h1>
+          <div className=" flex w-full max-w-md text-center">
+           
+            <p className="text-xl text-gray-300 mt-2">Vítima foi encontrada! esse cachorro vai ja morre viu...</p>
+             <img src="/banana.png" className="w-14 h-10 mx-auto mt-6" />
+             </div>
+            <img src="/yo.png" className="w-70 h-70 rounded-full mx-auto mt-6" />
+
+            <div className="bg-white rounded-xl p-4 mt-8 min-h-[220px] max-h-[300px] overflow-y-auto flex flex-col gap-3">
+              {history.map((m, i) =>
+                m.from === "victim" ? (
+                  <div key={i}>
+                    <span className="text-xs text-gray-500">Felipelima</span>
+                    <div className="bg-gray-200 rounded-xl p-2 w-fit max-w-[80%]">
+                      <p className="text-black text-left">{m.text}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div key={i} className="flex justify-end">
+                    <div className="bg-red-600 rounded-xl p-2 max-w-[80%]">
+                      <p className="text-white text-left">{m.text}</p>
+                    </div>
+                  </div>
+                )
+              )}
+              {typing && <p className="text-gray-500 text-left">Digitando...</p>}
+            </div>
+
+            {awaitingChoice && !finished && (
+              <div className="flex flex-col gap-2 mt-5">
+                {currentNode.replies.map((r, i) => (
+                  <Button
+                    key={i}
+                    className="text-black bg-white hover:bg-gray-200"
+                    onClick={() => chooseReply(r)}
+                  >
+                    {r.text}
+                  </Button>
+                ))}
+              </div>
+            )}
+
+            {finished && (
+              <Button
+                className="mt-5 w-full bg-red-700 hover:bg-red-800 text-white font-bold"
+                onClick={onContinue}
+              >
+                Matar Vitima
+              </Button>
+            )}
+          </div>
+        </div>
       )}
     </Card>
   );
