@@ -143,7 +143,7 @@ useEffect(() => {
 if (
   save.day === 10 &&
   dir === "match" &&
-  current.id === "f4"
+  current.id === "f5"
 ) {
   setMatchedAnomaly(current);
   setPhase("lucasCall");
@@ -1107,7 +1107,7 @@ function WonView({ onContinue }: { onContinue: () => void }) {
             </div>
           ) : (
             <div className="mt-20 flex justify-center">
-              <PhoneOff onClick={stopAudio} className="w-15 h-15 text-red-500 rounded-xl bg-red-500/30 p-2" />
+              <PhoneOff onClick={()=> {{ stopAudio(); onContinue(); }}} className="w-15 h-15 text-red-500 rounded-xl bg-red-500/30 p-2" />
             </div>
           )}
         </>

@@ -133,17 +133,6 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   },  
     {
     id: "f4",
-    name: "USER.FOUND",
-    age: 10,
-    photos: [
-      "/anomalies/lucas4.png",
-      "/anomalies/lucas4.png",
-      "/anomalies/lucas4.png"
-    ],
-    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() aviso: ele sabera te ajudar se voce atender o chamado."
-  },  
-    {
-    id: "f5",
     name: "USER.FOUND(anomalie)",
     age: 10,
     photos: [
@@ -151,8 +140,19 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/camila2.png",
       "/anomalies/camila2.png"
     ],
-    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO: E melhor seguir em frente, nao confie nele"
-  },  
+    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO: E melhor seguir em frente, nao de match e não atenda o chamado"
+  },
+     {
+    id: "f5",
+    name: "USER.FOUND",
+    age: 10,
+    photos: [
+      "/profiles/lucas.png",
+      "/profiles/lucas.png",
+      "/anomalies/lucas4.png"
+    ],
+    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() AVISO: eu posso te ajudar... se voce atender o chamado."
+  },    
    {
     id: "f6",
     name: "Continue... |ERRO_USER",
