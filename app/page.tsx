@@ -982,12 +982,12 @@ const dialogue: DialogueNode[] = [
     victimMessage: "Por que tá tudo estranho nesse aplicativo?",
     replies: [
       { text: "Parece bem apetitoso.😈", killerSays: "Parece bem apetitoso.😈", next: 1 },
-      { text: "Você não me viu em sua casa?", killerSays: "Você não me viu chegando.", next: 2 },
+      { text: "Estava esperando por voce.", killerSays: "Você não me viu chegando.", next: 2 },
     ],
   },
   {
     id: 1,
-    victimMessage: "Como assim?? Para de brincadeira!",
+    victimMessage: "Como assim???",
     replies: [
       { text: "A brincadeira esta so começando 😈", killerSays: "A brincadeira esta so começando 😈", next: 3 },
       { text: "Cuidado estou na sua porta", killerSays: "Cuidado estou na sua porta", next: 3 },
@@ -1005,7 +1005,7 @@ const dialogue: DialogueNode[] = [
     id: 3,
     victimMessage: "o que voce ta falando?? Me deixa em paz!",
     replies: [
-      { text: "Matar vítima 🔪", killerSays: "Esse cachorro ja vai morrer!", next: "end" },
+      { text: "Matar vítima 🔪", killerSays: "Esse cachorro ja vai morrer viu...", next: "end" },
     ],
   },
 ];
@@ -1112,15 +1112,15 @@ function WonView({ onContinue }: { onContinue: () => void }) {
           )}
         </>
       ) : (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black via-black to-red-600 p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black via-red-900 to-blackp-6">
           <div className="">
              <h1 className="text-5xl text-red-500 font-bold">It's a Match</h1>
           <div className=" flex w-full max-w-md text-center">
            
-            <p className="text-xl text-gray-300 mt-2">Vítima foi encontrada! esse cachorro vai ja morre viu...</p>
-             <img src="/banana.png" className="w-14 h-10 mx-auto mt-6" />
+            <p className="text-xl text-gray-300 mt-2">Vítima foi encontrada! esse cachorro ja vai morre viu...</p>
+             <img src="/banana.png" className="rounded-xs w-18 h-10 mx-auto mt-6" />
              </div>
-            <img src="/yo.png" className="w-70 h-70 rounded-full mx-auto mt-6" />
+            <img src="/yo.png" className="border-2 border-red-500/20 w-80 h-80 rounded-full mx-auto mt-6" />
 
             <div className="bg-white rounded-xl p-4 mt-8 min-h-[220px] max-h-[300px] overflow-y-auto flex flex-col gap-3">
               {history.map((m, i) =>
@@ -1161,7 +1161,7 @@ function WonView({ onContinue }: { onContinue: () => void }) {
                 className="mt-5 w-full bg-red-700 hover:bg-red-800 text-white font-bold"
                 onClick={onContinue}
               >
-                Matar Vitima
+                Matar vitima 💀
               </Button>
             )}
           </div>
