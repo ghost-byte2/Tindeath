@@ -4,11 +4,12 @@ import { useEffect, useMemo, useState,useRef } from "react";
 import Image from "next/image";
 import { Button } from "./components/ui/button";
 import { Card } from "./components/ui/card";
-import { Heart, X, Skull, Flame,PhoneCall,Phone,PhoneOff} from "lucide-react";
+import { Heart, X, Skull, Flame,PhoneCall,Phone,PhoneOff,} from "lucide-react";
 import { generateDay, type DayProfile } from "./profiles";
 import { Undo2 } from "lucide-react";
 import { FINAL_DAY_PROFILES } from "./profiles";
 import { Input } from "./components/ui/input";
+import { FaLocationDot } from "react-icons/fa6";
 import "./style.css";
 type Phase =
   | "story"
@@ -793,17 +794,23 @@ function SwipeView({
             className="absolute right-0 top-0 h-full w-1/2 focus:outline-none"
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-card via-card/80 to-transparent p-4">
-            <div className="flex items-baseline gap-2">
-              <h2 className="text-2xl font-black">{profile.name}</h2>
-              <span className="text-xl font-light text-muted-foreground">
-                {profile.age}
-              </span>
+            <div className="flex ">
+             <h2 className="text-2xl font-black mr-2">{profile.name}</h2>
+               <span className="mr-2 mt-1 text-xl font-light text-muted-foreground">
+                {profile.age} -
+              </span>    
             </div>
           </div>
         </div>
         {/* biografia do perfil */}
-        <div className="p-4">
-          <p className="text-sm leading-relaxed text-foreground/90 h-15">
+        <div className="pl-4 pr-4 pb-4">
+          <div className="flex items-center mb-3">
+             <FaLocationDot className=" size-3 text-white/90"></FaLocationDot>
+              <h2 className="ml-1 text-sm text-foreground/70 font-light">
+                {profile.location}
+              </h2>
+              </div>
+          <p className="text-sm leading-relaxed text-foreground/90 h-20">
             {profile.bio}
           </p>
         </div>

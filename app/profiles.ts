@@ -4,6 +4,7 @@ export type Profile = {
   age: number;
   photos: [string, string, string]; // 3photo seeds
   bio: string;
+  location?: string;
 };
 
 // The canonical (Day 1) version of the 7 profiles. The player must memorize these.
@@ -17,7 +18,8 @@ export const CANONICAL_PROFILES: Profile[] = [
     "/profiles/mulher2.png",
     "/profiles/mulher1.png",
   ],
-  bio: "estudante de Biologia, amante da natureza e do mundo, sempre em busca de descorbertas e novas aventuras..."
+  bio: "estudante de Biologia, amante da natureza e do mundo, sempre em busca de descorbertas e novas aventuras...",
+  location: "São Paulo, SP"
 },
   {
     id: "p2",
@@ -29,6 +31,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/homem3.png",
     ],
     bio: "Dev.software, eu ja tomei 6 litros de café, introvertido nao muito sociavel,mas pode me chama ai... 👨‍💻😅.",
+    location: "Rio de Janeiro, RJ"
   },
   {
     id: "p3",
@@ -40,20 +43,10 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/meg.png",
     ],
     bio: "Uma pessoa que tem amor propio e sou feliz do jeito que sou, estudante de teatro, e stremer na roxinha nas horas vagas...",
+    location: "Floripa, SC"
   },
   {
     id: "p4",
-    name: "Lucas",
-    age: 29,
-    photos: [
-        "/profiles/lucas.png",
-        "/profiles/lucas2.png",
-        "/profiles/lucas3.png",
-    ],
-    bio: "Guitarrista nas horas vagas, programador no resto. Toco em bandas de rock indie.",
-  },
-  {
-    id: "p5",
     name: "Camila",
     age: 21,
     photos: [
@@ -62,6 +55,19 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/camila3.png",
     ],
     bio: "Médica veterinária. Tenho 3 gatos e zero paciência para mentiras.gosto de um bom vinho e de um bom papo sobre filmes de terror.",
+    location: "Brasília, DF"
+  },
+   {
+    id: "p5",
+    name: "Lucas",
+    age: 29,
+    photos: [
+        "/profiles/lucas.png",
+        "/profiles/lucas2.png",
+        "/profiles/lucas3.png",
+    ],
+    bio: "Guitarrista nas horas vagas, programador no resto. Toco em bandas de rock indie.",
+    location: "Brasília, DF"
   },
   {
     id: "p6",
@@ -73,6 +79,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/marlon3.png",
     ],
     bio: "Tatuador há 10 anos.Gosto de academia e fisiculturismo. Procuro conversa boa prefiro conversar pessoalmente em um lugar qualquer.",
+    location: "Curitiba, PR"
   },
    {
     id: "p7",
@@ -84,6 +91,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/vanessa3.png",
     ],
     bio: "Professora de estetica.Alguem cuja a personalidade intensa a viver com amor. Amo SOAD. gosto de jogar video game",
+    location: "Colinas, TO"
   },
    {
     id: "p8",
@@ -95,6 +103,7 @@ export const CANONICAL_PROFILES: Profile[] = [
         "/profiles/beatriz3.png",
     ],
     bio: "Estudante de cinema. Apaixonada por livros de ficção científica, um bom filme e por noites longas.",
+    location: "Recife, PE"
   },
 ];
 export const FINAL_DAY_PROFILES: Profile[] = [
@@ -130,9 +139,9 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/meg2.png"
     ],
     bio: " Anomalie-250 Ocupaçao:ERROR_CRITICAL.ANOMALIES as null AVISO: Caso receba uma mensagem dela, não responda.A entidade pode solicitar ajuda, fazer perguntas costumam preceder falhas críticas."
-  },  
-    {
-    id: "f4",
+  }, 
+  {
+   id: "f4",
     name: "USER.FOUND(anomalie)",
     age: 10,
     photos: [
@@ -141,7 +150,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/camila2.png"
     ],
     bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO: E melhor seguir em frente, nao de match e não atenda o chamado"
-  },
+  },     
      {
     id: "f5",
     name: "USER.FOUND",
@@ -152,7 +161,8 @@ export const FINAL_DAY_PROFILES: Profile[] = [
       "/anomalies/lucas4.png"
     ],
     bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() AVISO: eu posso te ajudar... se voce atender o chamado."
-  },    
+  },
+  
    {
     id: "f6",
     name: "Continue... |ERRO_USER",
@@ -250,6 +260,32 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
     "Bianca"
   ],
 }
+export const PROFILE_LOCATION_ANOMALIES: Record<string,string[]> = {
+  p1: [
+    "Perto de voce 😈,0 KM"
+  ],
+  p2: [
+    "xique xique, bahia"
+  ],
+  p3: [
+    "Barbacena, MG"
+  ],
+  p4: [
+    "Colinas,Tocantins"
+  ],
+  p5: [
+    "?,?"
+  ],
+  p6: [
+    "na sua casa, 0 KM"
+  ],
+  p7: [
+    "Perto de voce 😈,0 KM"
+  ],
+  p8: [
+    "parana,PR"
+  ]
+};
 type PhotoSlot = 0 | 1 | 2;
 
 
@@ -270,7 +306,7 @@ export const PROFILE_ANOMALIES: Record<
       "/anomalies/felipe1.png",
     ],
   },
-    p3: {
+   p3: {
        1: [
       "/anomalies/meg1.png",
     ],
@@ -280,18 +316,19 @@ export const PROFILE_ANOMALIES: Record<
   },
     p4: {
     1: [
-      "/anomalies/lucas2.png",
-    ],
-    2: [
-       "/anomalies/lucas3.png",
-      
-    ],
-  },
-    p5: {
-    1: [
        "/anomalies/camila1.png",
     ],
   },
+    p5: {
+    
+    1: [
+      "/anomalies/lucas2.png",
+    ],
+    2: [
+       "/anomalies/lucas3.png",  
+    ],
+  },
+   
    p6: {
     1: [
      "/anomalies/marlon1.png"
@@ -317,7 +354,7 @@ export const PROFILE_ANOMALIES: Record<
 
 };
 
-export type AnomalyKind = "name" | "photo" | "bio" |"age";
+export type AnomalyKind = "name" | "photo" | "bio" |"age"|"location";
 
 export type DayProfile = Profile & {
   hasAnomaly: boolean;
@@ -368,11 +405,13 @@ export function generateDay(runSeed: string, day: number): DayProfile[] {
 
 let kind: AnomalyKind;
 if (day <= 4) {
-  kind = ["name", "age", "bio","photo"][
-    Math.floor(rand() * 4)
+  kind = ["name", "age", "bio","photo","location"][
+    Math.floor(rand() * 5)
   ] as AnomalyKind;
 } else if (day <= 5) {
-  kind = "bio";
+  kind = ["bio","location"] [
+    Math.floor(rand() * 2)
+  ] as AnomalyKind;
 } else if (day === 6) {
   kind = ["age", "bio"][
     Math.floor(rand() * 2)
@@ -443,6 +482,15 @@ if (kind === "name") {
         modified.anomalyPhotoIndex = slot;
       }
     }
+  }
+}
+else if (kind === "location") {
+  const locationAnomalies = PROFILE_LOCATION_ANOMALIES[p.id];
+  if (locationAnomalies?.length) {
+    modified.location =
+      locationAnomalies[
+        Math.floor(rand() * locationAnomalies.length)
+      ];
   }
 }
 baseline[targetIdx] = modified;
