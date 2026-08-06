@@ -1127,7 +1127,7 @@ function WonView({ onContinue }: { onContinue: () => void }) {
             <p className="text-xl text-gray-300 mt-2">Vítima foi encontrada! esse cachorro ja vai morre viu...</p>
              <img src="/banana.png" className="rounded-xs w-18 h-10 mx-auto mt-6" />
              </div>
-            <img src="/yo.png" className="border-2 border-red-500/20 w-80 h-80 rounded-full mx-auto mt-6" />
+            <img src="/bananaa.png" className="border-2 border-red-500/20 w-80 h-80 rounded-full mx-auto mt-6" />
 
             <div className="bg-white rounded-xl p-4 mt-8 min-h-[220px] max-h-[300px] overflow-y-auto flex flex-col gap-3">
               {history.map((m, i) =>
