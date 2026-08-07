@@ -295,13 +295,17 @@ export const PROFILE_ANOMALIES: Record<
 > = {
    p1: {
     0: [
-      "/anomalies/marina2.png",  
+      "/anomalies/marina2.png",
     ],
     2: [
-      "anomalies/marina.png",
+      "/anomalies/marina.png",
+      "/anomalies/marina3.png"
     ],
   },
      p2: {
+    1:[
+      "/anomalies/felipe3.png",
+    ],
     2: [
       "/anomalies/felipe1.png",
     ],
@@ -318,6 +322,9 @@ export const PROFILE_ANOMALIES: Record<
     1: [
        "/anomalies/camila1.png",
     ],
+    2:[
+      "/anomalies/camila3.png",
+    ]
   },
     p5: {
     
@@ -341,14 +348,21 @@ export const PROFILE_ANOMALIES: Record<
     1:[
       "/anomalies/vanessa.png"
     ],
+    2:[
+      "/anomalies/vanessa3.png"
+    ]
   },
      p8: {
       0:[
-        "anomalies/beatriz3.png"
+        "/anomalies/beatriz3.png"
+      ],
+      1:[
+        "/anomalies/beatriz4.png",
       ],
 
     2: [
        "/anomalies/beatriz2.png",
+       
     ],
   },
 

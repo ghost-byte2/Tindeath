@@ -349,9 +349,9 @@ function sendMessage() {
 }
 
   return (
-    <main className="min-h-screen bg-background text-foreground flex flex-col items-center px-4 py-6">
+    <main className="min-h-screen text-foreground flex flex-col items-center px-4 py-6">
        {phase !== "story" && <Header day={save.day} />}
-      <div className="w-full max-w-md flex-1 flex flex-col items-stretch justify-center">
+      <div className=" w-full max-w-md flex-1 flex flex-col items-stretch justify-center">
         {phase === "story" && (
   <StoryIntro onContinue={() => setPhase("intro")} />
 )}
@@ -709,26 +709,33 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
 }
 
   return (
-    <Card className="p-6 space-y-4 border border-white/10">
+    <div>
+     
+    <Card className="p-6 space-y-10 border border-white/50" style={{ backgroundImage: "url('/back.png')" }}>
       <h1 className="text-3xl font-black leading-tight">
         {day === 1 ? "Bem-vindo ao Tindeath." : `Dia ${day}.`}
+        <p className="text-sm text-white/40 ml-2"> version.1.20.14 beta_test app-anomalie</p>
         
       </h1>
     {/* começo do jogo dia 1 */ }
       {day === 1 && (
         <>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Hoje você verá os 8 perfis na forma original. Memorize cada nome,idade,
-            foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
-            anomalias e recuse o match.
+           Esta versao Beta_test do app de relacionamento Tindeath. O app esta instável e pode apresentar anomalias.
+            <br></br>
+            <br></br>
+            OS perfis continuam os mesmos (novos virao na prox.versão) então você verá os 8 perfis na forma original. Memorize cada nome,idade,
+            foto,biografia e localização. Nos próximos dias, algo pode mudar — ou não.Se Caso encontrar uma anomalia, voce deve recusar para evitar problemas ate o app ficar instavel apos 9 dias de uso
+            .
           </p>
 
-          <Button onClick={onStart} className="w-full bg-white text-black hover:bg-gray-200" size="lg">
+          <Button onClick={onStart} className="w-full bg-black text-white border border-white/50 hover:bg-black/70" size="lg">
             Entrar no app
           </Button>
         </>
       )}
     </Card>
+    </div>
   );
   
 }
@@ -905,7 +912,8 @@ function Verdict({
   //verificaçao se a pessoa errou
   if (died) {
     return (
-  <div>
+      <main className="w-full h-60">
+  <div className="">
         <div className="flex items-center gap-3 bg-red-600">
           <Skull className="size-8  " />
           <h2 className="text-3xl font-black ">Você morreu.</h2>
@@ -913,10 +921,11 @@ function Verdict({
         <p className="text-sm text-muted-foreground leading-relaxed mt-10 ml-5">
           {message}
         </p>
-        <Button onClick={onReset} size="lg" className="w-full bg-black  hover:bg-black">
+        <Button onClick={onReset} size="lg" className="mt-10 w-full bg-black hover:bg-black">
           Tentar de novo
         </Button>
      </div>
+     </main>
     );
   }
   //retorna o dia seguinte se acertar
