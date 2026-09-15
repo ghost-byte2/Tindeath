@@ -721,12 +721,14 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
       {day === 1 && (
         <>
           <p className="text-sm text-muted-foreground leading-relaxed">
-           Esta versao Beta_test do app de relacionamento Tindeath. O app esta instável e pode apresentar anomalias.
+            Hoje você verá os 8 perfis na forma original. Memorize cada nome,idade,
+            foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
+            anomalias e recuse o match.
             <br></br>
             <br></br>
-            OS perfis continuam os mesmos (novos virao na prox.versão) então você verá os 8 perfis na forma original. Memorize cada nome,idade,
-            foto,biografia e localização. Nos próximos dias, algo pode mudar — ou não.Se Caso encontrar uma anomalia, voce deve recusar para evitar problemas ate o app ficar instavel apos 9 dias de uso
-            .
+           Esta versao Beta_test do app de relacionamento Tindeath. E exclusiva para um experimento tenha cuidado na utilização.
+            <br></br>
+
           </p>
 
           <Button onClick={onStart} className="w-full bg-black text-white border border-white/50 hover:bg-black/70" size="lg">

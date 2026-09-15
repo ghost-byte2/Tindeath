@@ -109,36 +109,36 @@ export const CANONICAL_PROFILES: Profile[] = [
 export const FINAL_DAY_PROFILES: Profile[] = [
  {
   id: "f1",
-  name: "ANOMALIE",
+  name: "USER.ANOMALIE(anomalie)",
   age: 10,
   photos: [
-    "/anomalies/mulher3.png",
-    "/anomalies/mulher3.png",
+    "/anomalies/floresta.png",
+    "/anomalies/metro.png",
     "/anomalies/mulher3.png",
   ],
   bio: "ANOMALIA-087 Ocupação:ERR_LOG_anomalie .User Error_GET-OUT  "
 },
   {
     id: "f2",
-    name: "DOn't LOOCK",
+    name: "User.DOn't LOOCK(anomalie)",
     age: 10,
     photos: [
-      "/anomalies/felipe2.png",
-      "/anomalies/felipe2.png",
+      "/anomalies/moto.png",
+      "/anomalies/restaurante.png",
       "/anomalies/felipe2.png",
     ],
     bio: " Anomalie-450 Ocupaçao:ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA"
   },  
    {
     id: "f3",
-    name: "HELP US",
+    name: "USER.HELP US(anomalie)",
     age: 10,
    photos: [
       "/anomalies/meg2.png",
-      "/anomalies/meg2.png",
-      "/anomalies/meg2.png"
+      "/anomalies/baile.png",
+      "/anomalies/bruxa.png"
     ],
-    bio: " Anomalie-250 Ocupaçao:ERROR_CRITICAL.ANOMALIES as null AVISO: Caso receba uma mensagem dela, não responda.A entidade pode solicitar ajuda, fazer perguntas costumam preceder falhas críticas."
+    bio: " Anomalie-250 Ocupaçao:ERROR_CRITICAL.ANOMALIES as null AVISO:A entidade pode solicitar ajuda, fazer perguntas costumam preceder falhas críticas."
   }, 
   {
    id: "f4",
@@ -146,21 +146,21 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     age: 10,
     photos: [
       "/anomalies/camila2.png",
-      "/anomalies/camila2.png",
-      "/anomalies/camila2.png"
+      "/anomalies/camilaa.png",
+      "/anomalies/cavalo.png"
     ],
-    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO: E melhor seguir em frente, nao de match e não atenda o chamado"
+    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO:a entidade pode estar com você, não tente fugir, ele sabe onde você esta. Siga as regras do jogo e ficara bem."
   },     
      {
     id: "f5",
-    name: "USER.FOUND",
+    name: "USER.ENTITY",
     age: 10,
     photos: [
       "/profiles/lucas.png",
-      "/profiles/lucas.png",
-      "/anomalies/lucas4.png"
+      "/anomalies/lucas4.png",
+      "/monstro.png"
     ],
-    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() AVISO: eu posso te ajudar... se voce atender o chamado."
+    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() AVISO: voce consegue ajudar eles, aceite o desafio e siga as regras do jogo."
   },
   
    {
@@ -168,9 +168,9 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "Continue... |ERRO_USER",
     age: 10,
     photos: [
+      "/anomalies/academia.png",
       "/anomalies/marlon1.png",
-      "/anomalies/marlon1.png",
-      "/anomalies/marlon1.png"
+      "/anomalies/tatuagem.png"
     ],
     bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 3 pessoas.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos."
   }, 
@@ -179,11 +179,11 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "ANOMALIA_?|ERRO_USER",
     age: 10,
     photos: [
+      "/anomalies/vamp.png",
       "/anomalies/vanessa2.png",
-      "/anomalies/vanessa2.png",
-      "/anomalies/vanessa2.png"
+      "/anomalies/praia.png"
     ],
-    bio: "ANOMALIA-56 ERROR_ANOMALIES:LOG:DEAD - AVISO: Ele esta com você, não tente fugir, ele sabe onde você esta. Siga as regras do jogo e ficara bem."
+    bio: "ANOMALIA-56 ERROR_ANOMALIES:LOG:DEAD - AVISO: Anomalia nao responde a todos, Relativamente docil, mas nao confia nela apenas ignore-a"
   },  
    {
     id: "f8",
@@ -191,7 +191,7 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     age: 10,
     photos: [
       "/anomalies/beatriz.png",
-      "/anomalies/bia1.png",
+      "/anomalies/bia-1.png",
       "/anomalies/beatriz1.png"
     ],
     bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 3 pessoas.Comportamento: Hostil a mentiras.Aviso: Se voce encontrar ele sinta se em casa."
