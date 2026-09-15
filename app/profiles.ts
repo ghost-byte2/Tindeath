@@ -190,8 +190,8 @@ export const FINAL_DAY_PROFILES: Profile[] = [
     name: "ERRO_USER | Continue...",
     age: 10,
     photos: [
-      "/anomalies/beatriz1.png",
-      "/anomalies/beatriz1.png",
+      "/anomalies/beatriz.png",
+      "/anomalies/bia1.png",
       "/anomalies/beatriz1.png"
     ],
     bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 3 pessoas.Comportamento: Hostil a mentiras.Aviso: Se voce encontrar ele sinta se em casa."
@@ -217,11 +217,12 @@ export const PROFILE_BIO_ANOMALIES: Record<string, string[]> = {
    "Alguem cuja mente conturbada precisa de uma ancora pra ficar em pe, atriz, e stremer na roxinha nas horas vagas..."
   ],
    p4: [
-    "Guitarrista nas horas vagas, Sinto que ja nos falamos antes,Toco em bandas de rock indie.",
-    "Guitarrista nas horas vagas, programador no resto. Toco em bandas de rock indie,Alguém continua cantando quando o palco fica vazio."
+    "Médica veterinária. Tenho 3 gatos e zero paciência para mentiras. Gosto de um bom vinho e filmes de terror.Ele ficava olhando para a porta a noite toda",
   ],
    p5: [
-    "Médica veterinária. Tenho 3 gatos e zero paciência para mentiras. Gosto de um bom vinho e filmes de terror.Ele ficava olhando para a porta a noite toda",
+     "Guitarrista nas horas vagas, Sinto que ja nos falamos antes,Toco em bandas de rock indie.",
+    "Guitarrista nas horas vagas, programador no resto. Toco em bandas de rock indie,Alguém continua cantando quando o palco fica vazio.",
+   
   ],
    p6: [
     "Tatuador há 10 anos.Gosto de academia e  de correr. Procuro conversa boa prefiro conversar pessoalmente em um lugar qualquer a noite."
@@ -245,10 +246,10 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
     "MegLuuh"
   ],
   p4: [
-    "Luck"
+     "Carolina"
   ],
   p5: [
-    "Carolina"
+    "Luck"
   ],
   p6: [
     "MATHEUS"
@@ -271,10 +272,10 @@ export const PROFILE_LOCATION_ANOMALIES: Record<string,string[]> = {
     "Barbacena, MG"
   ],
   p4: [
-    "Colinas,Tocantins"
+    "?,?"
   ],
   p5: [
-    "?,?"
+    "Colinas,Tocantins"
   ],
   p6: [
     "na sua casa, 0 KM"
