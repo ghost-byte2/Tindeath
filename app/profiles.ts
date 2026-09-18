@@ -241,7 +241,7 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
     "Marisa"
   ],
   p2: [
-    "Lipe"
+    "Lipeee"
   ],
   p3: [
     "MegLuuh"
@@ -253,7 +253,7 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
     "Lucks"
   ],
   p6: [
-    "MATHEUS"
+    "MATHEUSz"
   ],
   p7 : [
     "Vanessinhaww"
