@@ -250,7 +250,7 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
      "Carolina"
   ],
   p5: [
-    "Luck"
+    "Lucks"
   ],
   p6: [
     "MATHEUS"
@@ -270,16 +270,16 @@ export const PROFILE_LOCATION_ANOMALIES: Record<string,string[]> = {
     "xique xique, bahia"
   ],
   p3: [
-    "Barbacena, MG"
+    "Nova York, USA"
   ],
   p4: [
-    "?,?"
+    "?,?,?"
   ],
   p5: [
     "Colinas,Tocantins"
   ],
   p6: [
-    "na sua casa, 0 KM"
+    "Santa catarina, SC"
   ],
   p7: [
     "Perto de voce 😈,0 KM"
