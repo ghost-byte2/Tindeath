@@ -349,7 +349,7 @@ function sendMessage() {
 }
 
   return (
-    <main className="min-h-screen text-foreground flex flex-col items-center px-4 py-6">
+    <main className="min-h-screen text-foreground flex flex-col items-center px-1 py-2">
        {phase !== "story" && <Header day={save.day} />}
       <div className=" w-full max-w-md flex-1 flex flex-col items-stretch justify-center">
         {phase === "story" && (
@@ -635,7 +635,7 @@ function SystemError({ onFinish }: { onFinish: () => void }) {
 //header do jogo
 function Header({ day }: { day: number }) {
   return (
-    <header className="w-full max-w-md flex items-center justify-between pb-4">
+    <header className="w-full max-w-md flex items-center justify-between pb-2">
       <div className="flex items-center gap-2">
         <Flame className="size-6 text-primary" />
         <span className="font-black tracking-tight text-xl">
@@ -772,7 +772,7 @@ function SwipeView({
       >
         <div className="relative w-full bg-muted">
            <img
-    className="h-110 sm:h-20 md:h-120 lg:h-150 w-full object-cover"
+    className="h-120 w-full sm:h-20 md:h-120 lg:h-150 object-cover"
     src={profile.photos[photoIdx]}
     alt=""
   />
@@ -812,7 +812,7 @@ function SwipeView({
           </div>
         </div>
         {/* biografia do perfil */}
-        <div className="pl-4 pr-4 pb-4">
+        <div className="pl-4 pr-4 pb-0">
           <div className="flex items-center mb-3">
              <FaLocationDot className=" size-3 text-white/90"></FaLocationDot>
               <h2 className="ml-1 text-sm text-foreground/70 font-light">
@@ -823,9 +823,10 @@ function SwipeView({
             {profile.bio}
           </p>
         </div>
+       
       </Card>
       </div>
-      <div className="flex items-center justify-center gap-20 pt-2">
+       <div className="flex items-center justify-center gap-20 pt-2">
           <button
     onClick={onBack}
     disabled={index === 0}

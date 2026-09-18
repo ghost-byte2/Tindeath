@@ -112,11 +112,12 @@ export const FINAL_DAY_PROFILES: Profile[] = [
   name: "USER.ANOMALIE(anomalie)",
   age: 10,
   photos: [
+    "/anomalies/mulher3.png",
     "/anomalies/floresta.png",
     "/anomalies/metro.png",
-    "/anomalies/mulher3.png",
   ],
-  bio: "ANOMALIA-087 Ocupação:ERR_LOG_anomalie .User Error_GET-OUT  "
+  bio: "ANOMALIA-087 Ocupação:ERR_LOG_anomalie .User Error_GET-OUT  ",
+  location: "Perto de voce 😈,0 KM"
 },
   {
     id: "f2",
@@ -298,12 +299,18 @@ export const PROFILE_ANOMALIES: Record<
     0: [
       "/anomalies/marina2.png",
     ],
+    1:[
+      "/anomalies/painelmetro.png"
+    ],
     2: [
       "/anomalies/marina.png",
       "/anomalies/marina3.png"
     ],
   },
      p2: {
+      0:[
+        "/anomalies/felipemoto.png"
+      ],
     1:[
       "/anomalies/felipe3.png",
     ],
@@ -312,6 +319,9 @@ export const PROFILE_ANOMALIES: Record<
     ],
   },
    p3: {
+    0: [
+      "/anomalies/bracelete.png",
+    ],
        1: [
       "/anomalies/meg1.png",
     ],
@@ -320,6 +330,9 @@ export const PROFILE_ANOMALIES: Record<
     ],
   },
     p4: {
+      0:[
+        "/anomalies/gloss.png"
+      ],
     1: [
        "/anomalies/camila1.png",
     ],
@@ -328,7 +341,9 @@ export const PROFILE_ANOMALIES: Record<
     ]
   },
     p5: {
-    
+       0: [
+      "/anomalies/sorriso.png",
+    ],
     1: [
       "/anomalies/lucas2.png",
     ],
@@ -338,14 +353,20 @@ export const PROFILE_ANOMALIES: Record<
   },
    
    p6: {
+    0:[
+    "/anomalies/justiceiro.png"
+    ],
     1: [
-     "/anomalies/marlon1.png"
+     "/anomalies/marlon1.png",
     ],
     2: [
        "/anomalies/marlon2.png", 
     ],
   },
   p7 : {
+    0:[
+      "/anomalies/luz.png"
+    ],
     1:[
       "/anomalies/vanessa.png"
     ],
