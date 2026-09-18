@@ -806,7 +806,7 @@ function SwipeView({
             <div className="flex ">
              <h2 className="text-2xl font-black mr-2">{profile.name}</h2>
                <span className="mr-2 mt-1 text-xl font-light text-muted-foreground">
-                {profile.age} -
+                {profile.age}-
               </span>    
             </div>
           </div>
