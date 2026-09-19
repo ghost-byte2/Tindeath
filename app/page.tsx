@@ -721,12 +721,20 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
       {day === 1 && (
         <>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Hoje você verá os 8 perfis na forma original. Memorize cada nome,idade,
-            foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
-            anomalias e recuse o match.
+        <br></br>
+          Parabens! Você foi selecionado para participar de um estudo comportamental no app Tindeath.
+    <br></br>
+          Duração: 9 dias
+      <br></br>
+          Participantes: 8
+        <br></br>
+          Objetivo: identificar alterações comportamentais e anomalias nos perfis dos participantes.
+        <br></br>
+          Não existem respostas erradas...mas voce deve tomar cuidado.
+          <br></br>
             <br></br>
             <br></br>
-           Esta versao Beta_test do app de relacionamento Tindeath. E exclusiva para um experimento tenha cuidado na utilização.
+           Esta versao Beta_test do app de relacionamento Tindeath. E exclusiva para um experimento.
             <br></br>
 
           </p>
