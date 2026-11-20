@@ -720,25 +720,16 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
     {/* começo do jogo dia 1 */ }
       {day === 1 && (
         <>
+          <div className=" p-2 bg-black rounded-xl w-105 pt-10 pb-10">
           <p className="text-sm text-muted-foreground leading-relaxed">
-        <br></br>
           Parabens! Você foi selecionado para participar de um estudo comportamental no app Tindeath.
     <br></br>
-          Duração: 9 dias
-      <br></br>
-          Participantes: 8
-        <br></br>
-          Objetivo: identificar alterações comportamentais e anomalias nos perfis dos participantes.
-        <br></br>
-          Não existem respostas erradas...mas voce deve tomar cuidado.
-          <br></br>
-            <br></br>
-            <br></br>
-           Esta versao Beta_test do app de relacionamento Tindeath. E exclusiva para um experimento.
-            <br></br>
-
+    <br></br>
+            Hoje você verá os 8 perfis na forma original. Memorize cada nome,idade,
+            foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
+            anomalias e recuse o match.
           </p>
-
+          </div>
           <Button onClick={onStart} className="w-full bg-black text-white border border-white/50 hover:bg-black/70" size="lg">
             Entrar no app
           </Button>

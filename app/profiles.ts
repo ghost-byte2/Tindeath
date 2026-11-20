@@ -511,9 +511,7 @@ if (kind === "name") {
           string,
           string
         ];
-
         newPhotos[slot] = chosenAnomaly;
-
         modified.photos = newPhotos;
         modified.anomalyPhotoIndex = slot;
       }
@@ -529,6 +527,7 @@ else if (kind === "location") {
       ];
   }
 }
+
 baseline[targetIdx] = modified;
 return baseline;
 }
