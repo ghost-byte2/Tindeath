@@ -109,93 +109,100 @@ export const CANONICAL_PROFILES: Profile[] = [
 export const FINAL_DAY_PROFILES: Profile[] = [
  {
   id: "f1",
-  name: "USER.ANOMALIE(anomalie)",
+  name: "ANOMALIA-087-FOUND |ERRO_USER",
   age: 10,
   photos: [
     "/anomalies/mulher3.png",
     "/anomalies/floresta.png",
     "/anomalies/metro.png",
   ],
-  bio: "ANOMALIA-087 Ocupação:ERR_LOG_anomalie .User Error_GET-OUT  ",
-  location: "Perto de voce 😈,0 KM"
+  bio: "ANOMALIA-087 Estudante de Biologia, amante da natureza e do mundo, sempre em busca de novas aventuras. Principalmente à noite ela volta pra mim.",
+  location: "saia daqui..."
 },
   {
     id: "f2",
-    name: "User.DOn't LOOCK(anomalie)",
+    name: "Felipe|ERROR DOn't LOOCK(anomalie)",
     age: 10,
     photos: [
-      "/anomalies/moto.png",
-      "/anomalies/restaurante.png",
       "/anomalies/felipe2.png",
+      "/anomalies/restaurante.png",
+      "/anomalies/moto.png",
     ],
-    bio: " Anomalie-450 Ocupaçao:ERROR_[USER] Falha. IDENTIDADE SUBSTITUÍDA"
+    bio: " Anomalie-450 Dev.software, eu ja tomei 6 litros de café, introvertido nao muito sociavel, mas pode me chamar ai. Voce nem olhou nada ta tudo bem",
+    location: "Nao olhe..."
   },  
    {
     id: "f3",
-    name: "USER.HELP US(anomalie)",
+    name: "Maria luiza|ERRO_USER Help(anomalie)",
     age: 10,
    photos: [
       "/anomalies/meg2.png",
       "/anomalies/baile.png",
       "/anomalies/bruxa.png"
     ],
-    bio: " Anomalie-250 Ocupaçao:ERROR_CRITICAL.ANOMALIES as null AVISO:A entidade pode solicitar ajuda, fazer perguntas costumam preceder falhas críticas."
+    bio: " Anomalie-250 ele te encontrou e o seu jogo nunca tera um fim e agora voce faz parte dele... pode me ajudar?",
+    location: "me tire daqui..."
   }, 
   {
    id: "f4",
-    name: "USER.FOUND(anomalie)",
+    name: "Camila|ERRO_USER FOUND(anomalie)",
     age: 10,
     photos: [
       "/anomalies/camila2.png",
       "/anomalies/camilaa.png",
       "/anomalies/cavalo.png"
     ],
-    bio: "Anomalie-333 | ERRO_FATAL: ANOMALIE_TEXT.REPORT> AVISO:a entidade pode estar com você, não tente fugir, ele sabe onde você esta. Siga as regras do jogo e ficara bem."
+    bio: "Anomalie-333 Médica veterinária. Tenho 3 gatos e zero paciência para mentiras. Gosto de um bom vinho e filmes de terror.Ele ficava olhando para a porta a noite toda",
+    location: "ele me encontrou..."
   },     
      {
     id: "f5",
-    name: "USER.ENTITY",
+    name: "USER.FOUND(anomalie) |ERRO_USER HOST",
     age: 10,
     photos: [
       "/profiles/lucas.png",
       "/anomalies/lucas4.png",
       "/monstro.png"
     ],
-    bio: " Anomalie-0 ocupaçao: ERROR_[ANOMALIA_HOST] as find user() AVISO: voce consegue ajudar eles, aceite o desafio e siga as regras do jogo."
+    bio: " Anomalie-0 HOST - Guitarrista nas horas vagas, Sinto que ja nos falamos antes,Toco em bandas de rock indie.",
+    location: "voce me encontrou..."
   },
   
    {
     id: "f6",
-    name: "Continue... |ERRO_USER",
+    name: "ANOMALIA-087-FOUND |ERRO_USER",
     age: 10,
     photos: [
-      "/anomalies/academia.png",
       "/anomalies/marlon1.png",
+      "/anomalies/academia.png",
       "/anomalies/tatuagem.png"
     ],
-    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 3 pessoas.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos."
+    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 2 pessoas.Comportamento: Hostil a mentiras.Aviso: Não encare seus olhos por mais de 10 segundos.",
+    location:"encontre a verdade"
   }, 
     {
     id: "f7",
-    name: "ANOMALIA_?|ERRO_USER",
+    name: "Vanessa-|ERRO_USER DETECTED(anomalie)",
     age: 10,
     photos: [
       "/anomalies/vamp.png",
       "/anomalies/vanessa2.png",
       "/anomalies/praia.png"
     ],
-    bio: "ANOMALIA-56 ERROR_ANOMALIES:LOG:DEAD - AVISO: Anomalia nao responde a todos, Relativamente docil, mas nao confia nela apenas ignore-a"
+    bio: "Professora de estetica. cuja personalidade Ai professora que materia dificil😅. Amo SOAD. gosto de video games.Oi nao me olhe assim.",
+    location:"eu não sou real..."
   },  
    {
     id: "f8",
-    name: "ERRO_USER | Continue...",
+    name: "ANOMALIA-087-FOUND |ERRO_USER",
     age: 10,
     photos: [
       "/anomalies/beatriz.png",
       "/anomalies/bia-1.png",
       "/anomalies/beatriz1.png"
     ],
-    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 3 pessoas.Comportamento: Hostil a mentiras.Aviso: Se voce encontrar ele sinta se em casa."
+    bio: "ANOMALIA-087Ocupação:ERR_LOG_anomalie Médica.Entidades associadas: 2 pessoas.Comportamento: Hostil a mentiras.Aviso: Se voce encontrar ele sinta se em casa.",
+    location:"encontre a verdade"
   },  
 ];
 
@@ -253,7 +260,7 @@ export const PROFILE_NAME_ANOMALIES: Record<string,string[]> = {
     "Lucks"
   ],
   p6: [
-    "MATHEUSz"
+    "Lucas"
   ],
   p7 : [
     "Vanessinhaww"
