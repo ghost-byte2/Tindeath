@@ -720,13 +720,13 @@ function Intro({ onStart, day }: { onStart: () => void; day: number }) {
     {/* começo do jogo dia 1 */ }
       {day === 1 && (
         <>
-          <div className=" p-2 bg-black rounded-xl pt-10 pb-10">
+          <div className=" justify-center text-center align-center ml-5 p-2 bg-black rounded-xl pt-10 pb-10">
           <p className="text-sm text-muted-foreground leading-relaxed">
           Parabens! Você foi selecionado para participar de um estudo comportamental no app Tindeath.
     <br></br>
     <br></br>
             Hoje você verá os 8 perfis na forma original. Memorize cada nome,idade,
-            foto e bio. Nos próximos dias, algo pode mudar — ou não. Encontre as
+            foto,bio e local. Nos próximos dias, algo pode mudar — ou não. Encontre as
             anomalias e recuse o match.
           </p>
           </div>

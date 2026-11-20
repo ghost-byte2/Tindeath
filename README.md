@@ -4,20 +4,20 @@
 
 Você entrou em um aplicativo de relacionamentos comum... ou pelo menos é o que parece.
  <br/>
-Observe cada perfil com atenção, descubra o que não deveria existir e sobreviva às anomalias escondidas entre pessoas aparentemente normais.
- <br/>
-Nem todo match quer conhecer você,Cada perfil conta uma história,Alguns escondem algo impossível.
+A cada dia as notificaçoes nao param e tudo parece mais estranho sempre os mesmo perfis no feed desde o primeiro dia usando o app
+<br/>
+Mas estranhamente nem todos os perfis eram iguais... era como voce esta preso naquilo e ter que descobrir o que e verdadeiro ou não
  <br/>
  <br/>
 acesse agora: https://tindeath.vercel.app/
  <br/>
 ##  Sobre o jogo
 
-**Tindeath** é um web game de detecção de anomalias onde o jogador deve sobreviver durante **9 dias** dentro de um aplicativo de namoro misterioso.
+**Tindeath** é um web game de detecção de anomalias onde o jogador deve sobreviver durante **9 dias** dentro de um aplicativo de namoro.
 
 No primeiro dia, todos os perfis apresentados são normais. A partir do segundo dia, alguns perfis começam a sofrer alterações estranhas chamadas **anomalias**.
 
-O objetivo do jogador é memorizar os perfis originais e identificar qualquer mudança nos dias seguintes para evitar interagir com perfis corrompidos.
+O objetivo do jogador é memorizar os perfis originais e identificar qualquer mudança nos dias seguintes para evitar interagir com as anomalias.
 
 ---
 
@@ -31,6 +31,7 @@ Cada perfil possui:
  Nome,
  Idade,
  Descrição,
+ localizaçao
 
 O jogador deve analisar cuidadosamente cada informação antes de tomar uma decisão.
 
